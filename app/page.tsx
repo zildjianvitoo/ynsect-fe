@@ -1,4 +1,4 @@
-import AuthButton from "@/components/AuthButton";
+import AuthButton from "@/components/Button/AuthButton";
 
 export default function Home() {
   return (
