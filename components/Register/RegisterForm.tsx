@@ -117,7 +117,7 @@ export default function RegisterForm() {
             isSubmitting ? "bg-green-300" : "bg-primary"
           }`}
         >
-          {isSubmitting ? "Submitting..." : "Signup"}
+          {isSubmitting ? "Submitting..." : "Sign In"}
         </button>
       </div>
     </form>

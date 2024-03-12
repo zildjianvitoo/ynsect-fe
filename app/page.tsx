@@ -1,10 +1,11 @@
-import AuthButton from "@/components/Button/AuthButton";
+import Hero from "@/components/Home/Section/Hero";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <main className="py-20 container mx-auto flex flex-col items-center ">
-      <h1 className="text-3xl">Home Page</h1>
-      <AuthButton />
-    </main>
+    <div className="overflow-hidden">
+      <Navbar />
+      <Hero />
+    </div>
   );
 }
