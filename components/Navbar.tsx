@@ -13,7 +13,7 @@ const links = [
 
 export default function Navbar({}: Props) {
   return (
-    <nav className="absolute flex w-full  items-center justify-between px-16 py-6">
+    <nav className="absolute  flex w-full items-center justify-between  px-16 py-6">
       <div className="">
         <Image
           src="/images/logo-white.png"
@@ -35,7 +35,7 @@ export default function Navbar({}: Props) {
         <div className="rounded-lg border border-primary bg-[#eafff6]  p-3 text-2xl">
           <CiShoppingBasket />
         </div>
-        <div className="flex items-center gap-2 rounded-lg bg-primary px-8 py-3 text-white ">
+        <div className="flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-white ">
           <span className="text-xl">Join Us</span>
           <span className="">
             <GoPlus />
