@@ -13,7 +13,7 @@ const links = [
 
 export default function Navbar({}: Props) {
   return (
-    <nav className="absolute  flex w-full items-center justify-between  px-16 py-6">
+    <nav className="absolute  flex w-full items-center justify-between px-6 py-6 sm:px-10 lg:px-16">
       <div className="">
         <Image
           src="/images/logo-white.png"

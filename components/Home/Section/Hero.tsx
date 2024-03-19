@@ -12,7 +12,7 @@ const datas = [
 
 function Hero({}: Props) {
   return (
-    <div className="bg-black/80 py-64">
+    <div className="bg-black/80  px-6 py-64 sm:px-10 lg:px-16">
       <div className="flex flex-col gap-6">
         <p className="text-2xl text-white">
           Ynsect, Cultivating a Sustainable Future with Maggot Farming.
