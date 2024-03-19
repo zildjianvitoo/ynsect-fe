@@ -9,12 +9,12 @@ import Input from "../Input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const schema = z.object({
+const FormSchema = z.object({
   email: z.string().email(),
   password: z.string().min(1),
 });
 
-type FormFields = z.infer<typeof schema>;
+type FormFields = z.infer<typeof FormSchema>;
 
 export default function LoginForm() {
   const router = useRouter();
@@ -27,7 +27,7 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormFields>({ resolver: zodResolver(schema) });
+  } = useForm<FormFields>({ resolver: zodResolver(FormSchema) });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const login = await signIn("credentials", { ...data, redirect: false });
@@ -62,11 +62,11 @@ export default function LoginForm() {
           errors={errors}
         />
       </div>
-      <div className="mt-2 flex gap-2 items-center">
+      <div className="mt-2 flex items-center gap-2">
         <input
           type="checkbox"
           id="remember"
-          className="text-green-600 bg-gray-100 border-gray-300 rounded-xl focus:ring-green-500 w-5 h-5"
+          className="h-5 w-5 rounded-xl border-gray-300 bg-gray-100 text-green-600 focus:ring-green-500"
         />
         <label className="text-lg" htmlFor="remember">
           Remember Me
@@ -76,7 +76,7 @@ export default function LoginForm() {
         <button
           disabled={isSubmitting}
           type="submit"
-          className={`w-full  text-white py-2 rounded-lg text-lg ${
+          className={`w-full  rounded-lg py-2 text-lg text-white ${
             isSubmitting ? "bg-green-300" : "bg-primary"
           }`}
         >
