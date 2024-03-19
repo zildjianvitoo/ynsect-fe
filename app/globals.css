@@ -73,4 +73,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .container {
+    @apply px-6 sm:px-10 lg:px-16;
+  }
 }

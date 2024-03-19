@@ -71,8 +71,12 @@ export default function ProductList() {
     <div className="flex flex-col gap-6 ">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className=" flex flex-col gap-2">
-          <p className=" text-slate-500">The Best of The Best</p>
-          <h1 className="text-4xl font-bold lg:text-5xl">Our Product</h1>
+          <p className="text-lg text-slate-500 lg:text-xl">
+            The Best of The Best
+          </p>
+          <h1 className="text-4xl font-bold md:text-5xl lg:text-6xl">
+            Our Product
+          </h1>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -85,7 +89,7 @@ export default function ProductList() {
                     <FormControl>
                       <Input
                         placeholder="Cari Produk"
-                        className="h-11  md:w-[250px]"
+                        className="h-11 md:w-[250px]"
                         {...field}
                       />
                     </FormControl>
@@ -102,7 +106,7 @@ export default function ProductList() {
           </form>
         </Form>
       </div>
-      <div className="grid grid-cols-1  gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {dummyData.map((item, index) => (
           <ProductCard
             key={index}

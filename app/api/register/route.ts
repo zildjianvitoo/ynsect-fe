@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function POST(req) {
+export async function POST(req: Request) {
   const body = await req.json();
   const { name, email, password } = body.data;
 
@@ -13,7 +13,7 @@ export async function POST(req) {
       JSON.stringify({ message: "Missing Name, Email, or Password" }),
       {
         status: 400,
-      }
+      },
     );
   }
 
@@ -28,7 +28,7 @@ export async function POST(req) {
       JSON.stringify({ message: "Email already existed" }),
       {
         status: 400,
-      }
+      },
     );
   }
 
