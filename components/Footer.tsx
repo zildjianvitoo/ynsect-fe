@@ -6,12 +6,9 @@ import { RiInstagramFill } from "react-icons/ri";
 
 export default function Footer() {
   return (
-    <footer
-      id="footer"
-      className="bottom-0 left-0 mt-16 border-t  px-6 sm:px-10 lg:px-16"
-    >
+    <footer id="footer" className="container bottom-0 left-0 mt-16  border-t">
       <div className="bg-white py-12 lg:py-16">
-        <div className="relative mx-auto flex w-full flex-col gap-6   sm:w-[95%] ">
+        <div className="relative mx-auto flex w-full flex-col gap-6  ">
           <div className="flex flex-col  gap-10 text-sm md:gap-20 lg:flex-row ">
             <div className="flex flex-col gap-3">
               <figure>
