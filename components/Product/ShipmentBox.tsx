@@ -6,9 +6,7 @@ type Props = {};
 export default function ShipmentBox({}: Props) {
   return (
     <div className="flex flex-col gap-2 rounded-lg border border-slate-300 p-6">
-      <h3 className=" text-xl font-bold lg:text-2xl">
-        Atur jumlah dan catatan
-      </h3>
+      <h3 className=" text-xl font-bold lg:text-2xl">Pengiriman</h3>
       <div className="mt-2 flex items-center justify-between">
         <p className="text-slate-500">Estimasi tiba</p>
         <h3 className=" text-xl font-bold lg:text-2xl">24 Maret 2024</h3>
