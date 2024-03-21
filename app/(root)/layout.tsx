@@ -9,7 +9,7 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <main className="flex flex-col overflow-hidden  ">{children}</main>
       <Footer />
     </>
