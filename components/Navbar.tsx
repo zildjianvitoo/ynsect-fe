@@ -33,7 +33,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 flex w-full  items-center justify-between px-20 py-6 ${isScroll && "glass"}`}
+      className={`fixed top-0 z-50 flex w-full  items-center justify-between px-20 py-6 ${isScroll && "glass"}`}
     >
       <div className="">
         <Image
