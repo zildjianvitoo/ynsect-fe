@@ -5,7 +5,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { IoMailOutline } from "react-icons/io5";
 import { PiLockKeyThin } from "react-icons/pi";
-import Input from "../Input";
+import Input from "../../Input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 

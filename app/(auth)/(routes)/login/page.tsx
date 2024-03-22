@@ -5,12 +5,12 @@ import { FcGoogle } from "react-icons/fc";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 import Header from "@/components/Header";
 import OAuthButton from "@/components/Button/OAuthButton";
-import LoginForm from "@/components/Login/LoginForm";
+import LoginForm from "@/components/Auth/Login/LoginForm";
 
 const LoginPage = () => {
   return (
-    <section className="w-full h-screen flex">
-      <section id="login" className="w-1/2 py-20 px-40">
+    <section className="flex h-screen w-full">
+      <section id="login" className="w-1/2 px-40 py-20">
         <BackButton
           route="/"
           icon={<IoChevronBackCircleOutline />}
@@ -24,7 +24,7 @@ const LoginPage = () => {
           <LoginForm />
         </div>
         <div className="mt-4 text-center text-lg">Or Sign In With</div>
-        <div className="flex mt-4 gap-4">
+        <div className="mt-4 flex gap-4">
           <OAuthButton provider="google" icon={<FcGoogle />} text="Google" />
           <OAuthButton
             provider="facebook"

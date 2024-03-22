@@ -5,10 +5,11 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { IoMailOutline } from "react-icons/io5";
 import { PiLockKeyThin } from "react-icons/pi";
-import Input from "../Input";
+
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AiOutlineUser } from "react-icons/ai";
+import Input from "@/components/Input";
 
 const schema = z
   .object({
@@ -99,11 +100,11 @@ export default function RegisterForm() {
           errors={errors}
         />
       </div>
-      <div className="mt-2 flex gap-2 items-center">
+      <div className="mt-2 flex items-center gap-2">
         <input
           type="checkbox"
           id="remember"
-          className="text-green-600 bg-gray-100 border-gray-300 rounded-xl focus:ring-green-500 w-5 h-5"
+          className="h-5 w-5 rounded-xl border-gray-300 bg-gray-100 text-green-600 focus:ring-green-500"
         />
         <label className="text-lg" htmlFor="remember">
           Remember Me
@@ -113,7 +114,7 @@ export default function RegisterForm() {
         <button
           disabled={isSubmitting}
           type="submit"
-          className={`w-full  text-white py-2 rounded-lg text-lg ${
+          className={`w-full  rounded-lg py-2 text-lg text-white ${
             isSubmitting ? "bg-green-300" : "bg-primary"
           }`}
         >

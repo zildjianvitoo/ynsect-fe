@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 import Header from "@/components/Header";
 import OAuthButton from "@/components/Button/OAuthButton";
-import RegisterForm from "@/components/Root/Register/RegisterForm";
+import RegisterForm from "@/components/Auth/Register/RegisterForm";
 
 const RegisterPage = () => {
   return (
