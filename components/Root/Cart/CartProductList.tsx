@@ -151,25 +151,31 @@ export default function CartProductList({}: Props) {
                           }
                         />
                       </FormControl>
-                      <figure className="relative size-32">
-                        <Image src={"/images/logo.png"} alt={item.label} fill />
-                      </figure>
-                      <div className="flex flex-col">
-                        <h3 className=" text-xl font-bold lg:text-2xl">
-                          Atur jumlah dan catatan
-                        </h3>
-                        <p className="mt-2 text-slate-500">
-                          Sisa stok: {item.stock} kg
-                        </p>
-                        <div className="mt-4 flex items-center justify-between">
-                          <p className="text-slate-500">Subtotal:</p>
-                          <h3 className=" text-xl font-bold lg:text-2xl">
-                            IDR 32,000
+                      <div className="flex flex-col gap-4 md:flex-row">
+                        <figure className="relative size-32">
+                          <Image
+                            src={"/images/logo.png"}
+                            alt={item.label}
+                            fill
+                          />
+                        </figure>
+                        <div className="flex flex-col">
+                          <h3 className=" hidden text-xl font-bold md:block lg:text-2xl">
+                            Atur jumlah dan catatan
                           </h3>
+                          <p className="mt-2 text-slate-500">
+                            Sisa stok: {item.stock} kg
+                          </p>
+                          <div className=" mt-4 items-stretch  bg-slate-100">
+                            <p className="text-slate-500">Subtotal:</p>
+                            <h3 className=" text-xl font-bold lg:text-2xl">
+                              IDR 32,000
+                            </h3>
+                          </div>
                         </div>
                       </div>
-                      <div className="ml-auto">
-                        <CountButton intialCount={item.amount} />
+                      <div className="ml-auto ">
+                        <CountButton intialCount={item.amount} cartPage />
                       </div>
                     </div>
                   </FormItem>

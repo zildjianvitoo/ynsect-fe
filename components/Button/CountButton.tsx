@@ -3,16 +3,22 @@ import React, { Dispatch, useState } from "react";
 import { Button } from "../ui/button";
 import { AiOutlineMinus } from "react-icons/ai";
 import { GoPlus } from "react-icons/go";
+import { cn } from "@/lib/utils";
 
 type Props = {
   intialCount: number;
+  cartPage: boolean;
 };
 
-export default function CountButton({ intialCount }: Props) {
+export default function CountButton({ intialCount, cartPage }: Props) {
   const [count, setCount] = useState(intialCount || 0);
 
   return (
-    <div className="mt-2 flex items-center gap-5">
+    <div
+      className={cn("mt-2 flex items-center gap-5 ", {
+        "max-[460px]:flex-col": cartPage,
+      })}
+    >
       <Button
         variant={"secondary"}
         size={"icon"}
