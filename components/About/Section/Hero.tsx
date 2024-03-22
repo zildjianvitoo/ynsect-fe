@@ -14,7 +14,7 @@ export default function Hero() {
         <p className="text-center text-lg tracking-wide text-white md:text-left md:text-xl lg:text-2xl">
           Ynsect, Cultivating a Sustainable Future with Maggot Farming.
         </p>
-        <h1 className="max-w-3xl  text-center text-4xl font-bold leading-normal tracking-wide text-[#D1F6E6] md:text-left lg:text-6xl">
+        <h1 className="max-w-3xl  text-center text-4xl/snug font-bold tracking-wide text-[#D1F6E6] md:text-left lg:text-6xl/normal">
           Empowering Change: Maggot Farming for a Sustainable World Ahead
         </h1>
       </div>
