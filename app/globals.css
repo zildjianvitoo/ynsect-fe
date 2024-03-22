@@ -79,6 +79,15 @@
   }
 }
 
+h1,
+h2,
+h3,
+h5,
+p,
+span,
+div {
+  letter-spacing: 0.025em;
+}
 .glass {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(5px);

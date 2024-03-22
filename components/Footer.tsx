@@ -22,7 +22,7 @@ export default function Footer() {
               </figure>
               <div className="flex flex-col gap-1 text-primary">
                 <h4 className="text-lg font-bold">2P8J+2VQ</h4>
-                <p className="text-lg leading-relaxed lg:w-[60%]">
+                <p className="text-lg leading-relaxed tracking-wide lg:w-[60%]">
                   Jl. Srijaya Negara, Bukit Besar, Kec. Ilir Bar. I, Kota
                   Palembang, Sumatera Selatan 30128
                 </p>
@@ -34,7 +34,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="flex w-full flex-col gap-8 max-lg:justify-between  md:flex-row lg:gap-14 xl:gap-28 ">
+            <div className="flex w-full flex-col gap-8 tracking-wide max-lg:justify-between  md:flex-row lg:gap-14 xl:gap-28 ">
               <div className="flex flex-col gap-3 md:gap-6">
                 <h4 className="w-fit text-lg font-bold  text-primary lg:text-xl">
                   Product

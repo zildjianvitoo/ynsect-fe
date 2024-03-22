@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CiShoppingBasket } from "react-icons/ci";
 import { GoPlus } from "react-icons/go";
 
 const links = [
-  { name: "Product", route: "/product" },
+  { name: "Product", route: "/products" },
   { name: "About Us", route: "/about" },
   { name: "Service", route: "/service" },
   { name: "Forum", route: "/forum" },
@@ -35,26 +36,28 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 z-50 flex w-full  items-center justify-between px-20 py-6 ${isScroll && "glass"}`}
     >
-      <div className="">
+      <Link href={"/"} className="">
         <Image
           src="/images/logo-white.png"
           alt="Ynsect Logo"
           width={110}
           height={55}
         />
-      </div>
+      </Link>
       <div className="">
         <ul className="flex gap-16">
           {links.map((link, i) => (
             <li key={i} className="text-xl font-thin text-white">
-              <a href={link.route}>{link.name}</a>
+              <Link href={link.route}>{link.name}</Link>
             </li>
           ))}
         </ul>
       </div>
       <div className="flex gap-6">
         <div className="rounded-lg border border-primary bg-[#eafff6]  p-3 text-3xl">
-          <CiShoppingBasket />
+          <Link href="/cart">
+            <CiShoppingBasket />
+          </Link>
         </div>
         <div className="flex items-center gap-2 rounded-lg bg-primary px-8 py-3 text-white ">
           <span className="text-xl">Join Us</span>

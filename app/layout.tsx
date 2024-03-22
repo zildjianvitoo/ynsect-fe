@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={plusJakarta.className}>
         <AuthProvider>
-          <main>{children}</main>
+          <>{children}</>
         </AuthProvider>
       </body>
     </html>

@@ -22,9 +22,7 @@ export default function ProductCard({ description, image, title }: Props) {
         {description}
       </p>
       <div className="flex gap-2">
-        <Button className="mt-3 w-full text-lg font-medium tracking-wide">
-          Buy
-        </Button>
+        <Button className="mt-3 w-full text-lg font-medium ">Buy</Button>
         <Button className="group mt-3 border border-primary bg-transparent px-3">
           <CiShoppingBasket className="size-6 text-primary group-hover:text-white" />
         </Button>
