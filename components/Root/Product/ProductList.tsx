@@ -2,11 +2,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { FormControl, FormField, FormItem, Form } from "../ui/form";
-import { Input } from "../ui/input";
 import { Search } from "lucide-react";
-import { Button } from "../ui/button";
 import ProductCard from "./ProductCard";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const dummyData = [
   {

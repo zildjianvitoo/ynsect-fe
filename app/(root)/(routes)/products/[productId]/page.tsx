@@ -1,6 +1,6 @@
-import Hero from "@/components/Product/Section/Hero";
-import ProductFeature from "@/components/Product/Section/ProductFeature";
-import ProductListCarousel from "@/components/Product/Section/ProductListCarousel";
+import Hero from "@/components/Root/Product/Section/Hero";
+import ProductFeature from "@/components/Root/Product/Section/ProductFeature";
+import ProductListCarousel from "@/components/Root/Product/Section/ProductListCarousel";
 import React from "react";
 
 type Props = {};

@@ -1,9 +1,6 @@
-import ProductList from "@/components/Product/ProductList";
-import React from "react";
+import ProductList from "@/components/Root/Product/ProductList";
 
-type Props = {};
-
-export default function Product({}: Props) {
+export default function Product() {
   return (
     <section className="container mt-36 py-6">
       <ProductList />
