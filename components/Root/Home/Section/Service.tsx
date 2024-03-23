@@ -9,8 +9,8 @@ export default function Service() {
           Our Services
         </h1>
       </div>
-      <div className="flex flex-col gap-6 md:flex-row">
-        <div className="flex w-full flex-col gap-6 md:w-5/12">
+      <div className="flex flex-col gap-6 lg:flex-row">
+        <div className="flex w-full flex-col gap-6 lg:w-5/12">
           <ServiceCard
             title="Biobox"
             desc="Olah sampah dari rumah dengan Biobox"
@@ -24,7 +24,7 @@ export default function Service() {
             image="/images/waste-management.jpg"
           />
         </div>
-        <div className="w-full md:w-7/12">
+        <div className="w-full lg:w-7/12">
           <ServiceCard
             title="Setor Sampah"
             desc="Hubungi kami dan petugas akan tiba dirumahmu segera"
