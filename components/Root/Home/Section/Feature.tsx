@@ -40,19 +40,19 @@ const cardContents = [
 
 export default function Feature() {
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <div className="absolute -right-48 top-4 -z-10 h-96 w-96 rounded-full bg-gradient-to-tl from-[#94bbb9] to-transparent" />
-      <section id="feature" className="container mx-auto overflow-hidden py-16">
-        <header className="relative">
-          <h2 className="text-[56px]/snug font-bold text-[#03201E] text-primary">
+      <section id="feature" className="container w-full overflow-hidden pt-16">
+        <header className="relative ">
+          <h2 className="text-3xl font-bold md:text-5xl lg:text-6xl">
             Matchless features <br /> crafted to suit your triumph.
           </h2>
-          <p className="absolute right-[250px] top-2 max-w-lg text-xl text-[#03201E]">
+          <p className="top-2 mt-4 text-right text-[#03201E] lg:text-xl xl:absolute xl:right-[250px] xl:mt-0 xl:max-w-lg">
             Ynsect hadir sebagai solusi budidaya maggot kekinian berkolaborasi
             dengan teknologi
           </p>
         </header>
-        <div className="mt-14 grid grid-cols-3 gap-6">
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {cardContents.map((content, i) => (
             <FeatureCard
               key={i}
