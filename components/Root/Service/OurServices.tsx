@@ -56,9 +56,11 @@ export default function OurServices() {
               <p className=" text-slate-100 sm:text-lg md:text-xl">
                 Kami hadir siap mengolah limbah organik anda
               </p>
-              <Button className="flex h-11 w-fit items-center gap-1 text-lg">
-                Learn more <MdOutlineArrowForwardIos className="mt-[1px]" />
-              </Button>
+              <Link href={"/services/waste-management"}>
+                <Button className="flex h-11 w-fit items-center gap-1 text-lg">
+                  Learn more <MdOutlineArrowForwardIos className="mt-[1px]" />
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="relative h-80 overflow-hidden rounded-md ">
@@ -76,9 +78,11 @@ export default function OurServices() {
               <p className=" text-slate-100 sm:text-lg md:text-xl">
                 Hubungi kami dan petugas akan tiba dirumahmu segera
               </p>
-              <Button className="flex h-11 w-fit items-center gap-1 text-lg">
-                Learn more <MdOutlineArrowForwardIos className="mt-[1px]" />
-              </Button>
+              <Link href={"/services/setor-sampah"}>
+                <Button className="flex h-11 w-fit items-center gap-1 text-lg">
+                  Learn more <MdOutlineArrowForwardIos className="mt-[1px]" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
