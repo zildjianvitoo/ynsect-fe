@@ -25,7 +25,7 @@ export default function ForumSection() {
       {sectionList.map((section) => (
         <div
           key={section.name}
-          className={`flex h-14 items-center rounded-lg ${pathname === section.route ? "bg-primary font-light text-white " : "border-b font-normal text-primary"}  px-4 text-xl  md:w-80`}
+          className={`flex h-14 items-center ${pathname === section.route ? "rounded-lg bg-primary font-light text-white" : "border-b font-normal text-primary"}  px-4 text-xl  md:w-80`}
         >
           <Link href={section.route}>{section.name}</Link>
         </div>
