@@ -10,7 +10,7 @@ export default function SetorSampah({}: Props) {
     <div className="flex flex-col gap-8 md:gap-10 lg:gap-12">
       <div className="flex flex-col gap-2 text-xl">
         <Link
-          href={"/services"}
+          href={"/services#our-services"}
           className="flex items-center gap-2 text-[#03201E]"
         >
           <IoChevronBackCircleOutline className="text-3xl" />
