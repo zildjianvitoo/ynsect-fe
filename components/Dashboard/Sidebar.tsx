@@ -33,7 +33,7 @@ export default function Sidebar() {
       <ul className="flex flex-col gap-6">
         {links.map((link) => (
           <Link
-            className={`flex items-center gap-4 rounded-l-lg p-4 transition-all  duration-300 ${pathname == link.route ? "bg-primary text-white" : "text-slate-500 hover:bg-green-200"}`}
+            className={`flex items-center gap-4 rounded-l-lg p-4 transition-all  duration-300 ${pathname.includes(link.route) ? "bg-primary text-white" : "text-slate-500 hover:bg-green-200"}`}
             key={link.name}
             href={link.route}
           >
