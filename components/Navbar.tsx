@@ -24,7 +24,7 @@ import { RiMenu3Fill } from "react-icons/ri";
 const links = [
   { name: "Product", route: "/products" },
   { name: "About Us", route: "/about" },
-  { name: "Service", route: "/service" },
+  { name: "Service", route: "/services" },
   { name: "Forum", route: "/forum" },
 ];
 

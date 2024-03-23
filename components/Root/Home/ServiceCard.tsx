@@ -18,7 +18,7 @@ export default function ServiceCard({
 }: Props) {
   return (
     <div
-      className={`relative aspect-square max-h-80 w-full overflow-hidden rounded-xl lg:max-h-none lg:min-h-80 ${isJumbo ? "lg:aspect-auto lg:h-full" : "lg:aspect-[5/3]"}`}
+      className={`relative aspect-square max-h-80 w-full overflow-hidden rounded-lg lg:max-h-none lg:min-h-80 ${isJumbo ? "lg:aspect-auto lg:h-full" : "lg:aspect-[5/3]"}`}
     >
       <Image src={image} alt={title} fill className=" object-cover" />
       <div className="absolute z-10 h-full w-full bg-black/75" />
