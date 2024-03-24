@@ -1,4 +1,4 @@
-// import useDemoConfig from "../useDemoConfig";
+"use client";
 import React from "react";
 import { AxisOptions, Chart } from "react-charts";
 import useChartConfig from "@/hooks/useDemoConfig";
@@ -13,75 +13,19 @@ type Series = {
   data: Amount[];
 };
 
-const data: Series[] = [
-  {
-    label: "Series 1",
-    data: [
-      {
-        weight: 20,
-        date: "01",
-      },
-    ],
-  },
-  {
-    label: "Series 2",
-    data: [
-      {
-        weight: 40,
-        date: "02",
-      },
-    ],
-  },
-];
+type Props = {
+  title: string;
+  weight: number;
+};
 
-type Props = {};
-
-export default function Bar({}: Props) {
+export default function Bar({ title, weight }: Props) {
   const data: Series[] = [
     {
       label: "Series 1",
-      data: [
-        {
-          weight: 20,
-          date: "01",
-        },
-        {
-          weight: 40,
-          date: "02",
-        },
-        {
-          weight: 20,
-          date: "03",
-        },
-        {
-          weight: 45,
-          date: "04",
-        },
-        {
-          weight: 50,
-          date: "05",
-        },
-        {
-          weight: 15,
-          date: "06",
-        },
-        {
-          weight: 25,
-          date: "07",
-        },
-        {
-          weight: 30,
-          date: "08",
-        },
-        {
-          weight: 55,
-          date: "09",
-        },
-        {
-          weight: 35,
-          date: "10",
-        },
-      ],
+      data: Array.from({ length: 10 }, (_, index) => ({
+        weight: Math.floor(Math.random() * 100) + 1,
+        date: (index + 1).toString().padStart(2, "0"),
+      })),
     },
     {
       label: "Series 2",
@@ -148,10 +92,10 @@ export default function Bar({}: Props) {
     <div className="flex flex-col gap-2 rounded-xl  border border-[#E8E8E8] bg-white p-4">
       <div className="flex flex-col">
         <h3 className="text-xl font-medium text-slate-500 md:text-2xl">
-          Total Limbah
+          {title}
         </h3>
         <h2 className="text-2xl font-bold text-primary sm:text-3xl md:text-4xl lg:text-[40px]/normal">
-          52 Kg
+          {weight} Kg
         </h2>
       </div>
       <div className=" h-[300px] w-[900px] overflow-x-auto whitespace-nowrap xl:h-[350px] xl:w-[1100px] ">

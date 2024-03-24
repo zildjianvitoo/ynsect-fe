@@ -42,7 +42,12 @@ export default function CardStatSelection({}: Props) {
           />
         ))}
       </div>
-      <Bar />
+      <Bar
+        title={activeCardStats}
+        weight={
+          dummyData.filter((item) => item.title === activeCardStats)[0].weight
+        }
+      />
     </section>
   );
 }

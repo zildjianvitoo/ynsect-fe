@@ -18,7 +18,7 @@ export default function Agenda({}: Props) {
   useEffect(() => {}, []);
 
   return (
-    <div className="flex flex-col gap-6 sm:flex-row">
+    <section className="flex flex-col gap-6 sm:flex-row">
       <div className="boder-[#e8e8e8] basis-[40%] rounded-xl border  bg-white p-4">
         <Calendar
           mode="single"
@@ -75,6 +75,6 @@ export default function Agenda({}: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
