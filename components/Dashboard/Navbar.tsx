@@ -6,10 +6,10 @@ export default function Navbar() {
   return (
     <nav className="flex items-center justify-between border-b p-6">
       <div className="flex flex-col gap-2">
-        <div className="text-3xl font-bold text-primary">Halo, Dapa</div>
-        <div className="text-xl font-light">
+        <h3 className="text-3xl font-bold text-primary">Halo, Dapa</h3>
+        <p className="text-lg  text-slate-500 lg:text-xl">
           Yuk Cek dashboard kamu hari ini!
-        </div>
+        </p>
       </div>
       <div className="flex gap-4">
         <SearchInput />
