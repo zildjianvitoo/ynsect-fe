@@ -109,10 +109,10 @@ export default function CartProductList({}: Props) {
               name="items"
               render={({ field }) => (
                 <FormItem className="flex items-center justify-between rounded-md  border border-slate-400 px-6 py-4">
-                  <div className="flex flex-row items-center gap-4 ">
+                  <div className="mt-1 flex flex-row items-center gap-4 ">
                     <FormControl>
                       <Checkbox
-                        className="mt-1 border-slate-400"
+                        className="border-slate-400"
                         checked={items.every((item) =>
                           field.value.includes(item.id),
                         )}
@@ -126,7 +126,7 @@ export default function CartProductList({}: Props) {
                       </h3>
                     </FormLabel>
                   </div>
-                  <h4 className=" cursor-pointer  text-lg text-slate-500 lg:text-xl">
+                  <h4 className="cursor-pointer   text-lg text-slate-500 lg:text-xl">
                     Hapus semua
                   </h4>
                 </FormItem>
@@ -166,7 +166,7 @@ export default function CartProductList({}: Props) {
                           <p className="mt-2 text-slate-500">
                             Sisa stok: {item.stock} kg
                           </p>
-                          <div className=" mt-4 items-stretch  bg-slate-100">
+                          <div className=" mt-4 items-stretch  ">
                             <p className="text-slate-500">Subtotal:</p>
                             <h3 className=" text-xl font-bold lg:text-2xl">
                               IDR 32,000
