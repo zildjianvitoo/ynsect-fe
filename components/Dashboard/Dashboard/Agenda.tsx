@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { DayClickEventHandler } from "react-day-picker";
 import { format } from "date-fns";
@@ -14,8 +14,6 @@ export default function Agenda({}: Props) {
   );
 
   const today = format(new Date(), "d MMMM yyyy", { locale: id });
-
-  useEffect(() => {}, []);
 
   return (
     <section className="flex flex-col gap-6 sm:flex-row">
