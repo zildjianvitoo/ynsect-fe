@@ -26,7 +26,7 @@ export default function Agenda({}: Props) {
           onSelect={setPickedDate}
           modifiers={{ notified: notifiedDate }}
           modifiersClassNames={{
-            notified: "bg-[#429689]  hover:bg-[#429689]/90 hover:text-white",
+            notified: "bg-[#429689] hover:!bg-[#429689]/90",
           }}
         />
       </div>
