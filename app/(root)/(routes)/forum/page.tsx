@@ -3,7 +3,7 @@ import Sidebar from "@/components/Root/Forum/Section/Sidebar";
 
 export default function Home() {
   return (
-    <section className="container mt-36 flex gap-6 py-3">
+    <section className="mt-[76px] flex gap-6 lg:container lg:mt-36 lg:py-3">
       <Sidebar />
       <Question />
     </section>

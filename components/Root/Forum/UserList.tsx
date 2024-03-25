@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { LuUsers } from "react-icons/lu";
 
 const dummyData = [
   {
@@ -26,27 +27,32 @@ const dummyData = [
 export default function UserList() {
   return (
     <>
-      <div className="mt-4 text-2xl font-bold">Post Lainnya</div>
-      <div className="mt-3 flex flex-col gap-12">
-        {dummyData.map((data) => (
-          <div
-            key={data.name}
-            className="flex h-14 items-center gap-4 rounded-lg pl-1.5"
-          >
-            <div className="relative h-14 w-14 overflow-hidden rounded-full">
-              <Image
-                src={data.image}
-                alt={data.name}
-                fill
-                className="object-cover"
-              />
+      <div className="flex size-10 items-center justify-center rounded-md  text-2xl text-primary md:hidden">
+        <LuUsers />
+      </div>
+      <div className="hidden lg:block">
+        <div className="mt-4 text-2xl font-bold">Post Lainnya</div>
+        <div className="mt-3 flex flex-col gap-12">
+          {dummyData.map((data) => (
+            <div
+              key={data.name}
+              className="flex h-14 items-center gap-4 rounded-lg pl-1.5"
+            >
+              <div className="relative h-14 w-14 overflow-hidden rounded-full">
+                <Image
+                  src={data.image}
+                  alt={data.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="text-xl font-semibold">{data.name}</div>
+                <div className=" text-slate-500">{data.role}</div>
+              </div>
             </div>
-            <div className="flex flex-col gap-1">
-              <div className="text-xl font-semibold">{data.name}</div>
-              <div className=" text-slate-500">{data.role}</div>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </>
   );

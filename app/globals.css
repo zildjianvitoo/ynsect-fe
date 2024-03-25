@@ -97,8 +97,7 @@ div {
 }
 
 .dark-nav {
-  background-color: white;
-  border-bottom: 1px solid slategray;
+  @apply border-b bg-white;
 }
 
 .link-hover-dark {

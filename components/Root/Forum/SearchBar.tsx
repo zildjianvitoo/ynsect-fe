@@ -28,32 +28,43 @@ export default function SearchBar() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="relative flex items-center">
-          <FormField
-            control={form.control}
-            name="searchValue"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormControl>
-                  <Input
-                    placeholder="Cari forum"
-                    className="h-14 px-4 text-xl md:w-80"
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <Button
-            size={"icon"}
-            className="absolute right-2 bg-transparent hover:bg-transparent"
-          >
-            <Search className="text-slate-500" size={28} strokeWidth={1.5} />
-          </Button>
-        </div>
-      </form>
-    </Form>
+    <>
+      <div className="flex size-10  items-center justify-center rounded-md bg-primary text-white lg:hidden">
+        <Search size={24} strokeWidth={1.5} />
+      </div>
+      <div className="hidden lg:flex">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <div className="relative flex items-center">
+              <FormField
+                control={form.control}
+                name="searchValue"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormControl>
+                      <Input
+                        placeholder="Cari forum"
+                        className="h-14 px-4 text-xl md:w-80"
+                        {...field}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <Button
+                size={"icon"}
+                className="absolute right-2 bg-transparent hover:bg-transparent"
+              >
+                <Search
+                  className="text-slate-500"
+                  size={28}
+                  strokeWidth={1.5}
+                />
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </div>
+    </>
   );
 }

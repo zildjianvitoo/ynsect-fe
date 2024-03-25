@@ -32,7 +32,7 @@ export default function QuestionInput() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="relative flex items-center">
-          <FaSquarePlus className="absolute left-5 text-2xl text-slate-500" />
+          <FaSquarePlus className="absolute left-3 text-xl text-slate-500 lg:left-5 lg:text-2xl" />
           <FormField
             control={form.control}
             name="questionValue"
@@ -41,7 +41,7 @@ export default function QuestionInput() {
                 <FormControl>
                   <Input
                     placeholder="Ketik Pertanyaan"
-                    className="h-14 pl-16 text-xl md:w-full"
+                    className="h-12 pl-10 text-lg md:w-full lg:h-14 lg:pl-16 lg:text-xl"
                     {...field}
                   />
                 </FormControl>
@@ -53,8 +53,7 @@ export default function QuestionInput() {
             className="absolute right-2 bg-transparent hover:bg-transparent"
           >
             <SendHorizontal
-              className="text-slate-500"
-              size={32}
+              className="text-xl text-slate-500 lg:text-[32px]"
               strokeWidth={1.25}
             />
           </Button>
