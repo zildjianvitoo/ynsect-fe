@@ -8,10 +8,23 @@ import { PiLockKeyThin } from "react-icons/pi";
 
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AiOutlineUser } from "react-icons/ai";
-import Input from "@/components/Input";
+import {
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+  AiOutlineUser,
+} from "react-icons/ai";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
-const schema = z
+const formSchema = z
   .object({
     name: z.string().min(5),
     email: z.string().email(),
@@ -23,28 +36,32 @@ const schema = z
     path: ["confirmPassword"],
   });
 
-type FormFields = z.infer<typeof schema>;
-
 export default function RegisterForm() {
+  const [isShow, setIsShow] = useState(false);
+  const [isShowRepeat, setIsShowRepeat] = useState(false);
   const router = useRouter();
   const { status } = useSession();
   if (status === "authenticated") {
     router.push("/");
   }
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<FormFields>({ resolver: zodResolver(schema) });
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     const response = await fetch("/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ data }),
+      body: JSON.stringify({ values }),
     });
 
     if (!response.ok) {
@@ -52,75 +69,148 @@ export default function RegisterForm() {
     } else {
       router.push("/login");
     }
-  };
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="">
-        <Input
-          label="Name"
-          icon={<AiOutlineUser />}
-          type="text"
-          placeholder="ex: John Doe"
-          register={register}
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-5"
+      >
+        <FormField
+          control={form.control}
           name="name"
-          errors={errors}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg font-bold text-primary">
+                Name
+              </FormLabel>
+              <FormControl>
+                <div className="relative">
+                  <div className="absolute left-3 top-2 text-2xl text-primary">
+                    <AiOutlineUser />
+                  </div>
+                  <Input
+                    className="w-full rounded-lg  border bg-transparent px-12 py-2 text-base placeholder:text-base focus:outline-primary focus:ring-primary"
+                    placeholder="ex: John Doe"
+                    {...field}
+                  />
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </div>
-      <div className="mt-5">
-        <Input
-          label="Email"
-          icon={<IoMailOutline />}
-          type="email"
-          placeholder="ex: johndoe@gmail.com"
-          register={register}
+        <FormField
+          control={form.control}
           name="email"
-          errors={errors}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg font-bold text-primary">
+                Email
+              </FormLabel>
+              <FormControl>
+                <div className="relative">
+                  <div className="absolute left-3 top-2 text-2xl text-primary">
+                    <IoMailOutline />
+                  </div>
+                  <Input
+                    className="w-full rounded-lg  border bg-transparent px-12 py-2 text-base placeholder:text-base focus:outline-primary focus:ring-primary"
+                    placeholder="ex: johndoe@gmail.com"
+                    {...field}
+                  />
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </div>
-      <div className="mt-5">
-        <Input
-          label="Password"
-          icon={<PiLockKeyThin />}
-          type="password"
-          placeholder="Insert your password"
-          register={register}
+        <FormField
+          control={form.control}
           name="password"
-          errors={errors}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg font-bold text-primary">
+                Password
+              </FormLabel>
+              <FormControl>
+                <div className="relative">
+                  <div className="absolute left-3 top-2 text-2xl text-primary">
+                    <PiLockKeyThin />
+                  </div>
+                  <Input
+                    type={isShow ? "text" : "password"}
+                    className="w-full rounded-lg  border bg-transparent px-12 py-2 text-base placeholder:text-base focus:outline-primary focus:ring-primary"
+                    placeholder="ex: johndoe@gmail.com"
+                    {...field}
+                  />
+                  <div
+                    onClick={() => setIsShow(!isShow)}
+                    className="absolute right-3 top-2 bg-transparent text-2xl text-primary"
+                  >
+                    {isShow ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                  </div>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </div>
-      <div className="mt-5">
-        <Input
-          label="Confirm Password"
-          icon={<PiLockKeyThin />}
-          type="password"
-          placeholder="Confirm your password"
-          register={register}
+        <FormField
+          control={form.control}
           name="confirmPassword"
-          errors={errors}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg font-bold text-primary">
+                Confirm Password
+              </FormLabel>
+              <FormControl>
+                <div className="relative">
+                  <div className="absolute left-3 top-2 text-2xl text-primary">
+                    <PiLockKeyThin />
+                  </div>
+                  <Input
+                    type={isShowRepeat ? "text" : "password"}
+                    className="w-full rounded-lg  border bg-transparent px-12 py-2 text-base placeholder:text-base focus:outline-primary focus:ring-primary"
+                    placeholder="confirm your password"
+                    {...field}
+                  />
+                  <div
+                    onClick={() => setIsShowRepeat(!isShowRepeat)}
+                    className="absolute right-3 top-2 bg-transparent text-2xl text-primary"
+                  >
+                    {isShowRepeat ? (
+                      <AiOutlineEyeInvisible />
+                    ) : (
+                      <AiOutlineEye />
+                    )}
+                  </div>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </div>
-      <div className="mt-2 flex items-center gap-2">
-        <input
-          type="checkbox"
-          id="remember"
-          className="h-5 w-5 rounded-xl border-gray-300 bg-gray-100 text-green-600 focus:ring-green-500"
-        />
-        <label className="text-lg" htmlFor="remember">
-          Remember Me
-        </label>
-      </div>
-      <div className="mt-4">
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="remember"
+            className="h-5 w-5 rounded-xl border-gray-300 bg-gray-100 text-green-600 focus:ring-green-500"
+          />
+          <label className="text-lg" htmlFor="remember">
+            Remember Me
+          </label>
+        </div>
         <button
-          disabled={isSubmitting}
+          disabled={form.formState.isSubmitting}
           type="submit"
           className={`w-full  rounded-lg py-2 text-lg text-white ${
-            isSubmitting ? "bg-green-300" : "bg-primary"
+            form.formState.isSubmitting ? "bg-green-300" : "bg-primary"
           }`}
         >
-          {isSubmitting ? "Submitting..." : "Sign In"}
+          {form.formState.isSubmitting ? "Submitting..." : "Sign In"}
         </button>
-      </div>
-    </form>
+      </form>
+    </Form>
   );
 }

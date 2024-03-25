@@ -9,8 +9,11 @@ import RegisterForm from "@/components/Auth/Register/RegisterForm";
 
 const RegisterPage = () => {
   return (
-    <section className="flex w-full">
-      <section id="register" className="w-1/2 px-40 py-12">
+    <section className="relative h-[900px] w-full overflow-hidden lg:flex">
+      <section
+        id="register"
+        className="h-full px-8 py-20 sm:px-32 lg:w-1/2 lg:px-8 xl:px-40"
+      >
         <BackButton
           route="/"
           icon={<IoChevronBackCircleOutline />}
@@ -33,12 +36,16 @@ const RegisterPage = () => {
           />
         </div>
       </section>
-      <section id="img-container" className="relative  w-1/2">
+      <section
+        id="img-container"
+        className="absolute left-0 top-0 -z-10 h-[900px] w-full border lg:relative lg:block lg:w-1/2"
+      >
+        <div className="absolute -z-20 h-full w-full bg-gray-200/70 lg:hidden" />
         <Image
           src={"/images/insects-login.png"}
           alt="insects"
           fill
-          className="object-cover"
+          className="-z-30 object-cover"
         />
       </section>
     </section>
