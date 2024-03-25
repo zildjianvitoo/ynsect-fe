@@ -18,10 +18,10 @@ function Hero({}: Props) {
         src="/images/landing-hero.jpg"
         alt="Food Waste image"
         fill
-        className="object-cover"
+        className="absolute -z-20 object-cover"
       />
-      <div className="absolute left-0 top-0 z-10 h-full w-full bg-black/75 " />
-      <div className="container absolute z-20">
+      <div className="absolute left-0 top-0 -z-10 h-full w-full bg-black/75 " />
+      <div className="container  z-20">
         <div className="flex flex-col gap-4 text-center md:gap-6 md:text-left">
           <p className="text-lg text-white md:text-2xl">
             Ynsect, Cultivating a Sustainable Future with Maggot Farming.

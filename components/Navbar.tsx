@@ -1,13 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
@@ -16,6 +12,7 @@ import {
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CiShoppingBasket } from "react-icons/ci";
 import { GoPlus } from "react-icons/go";
@@ -29,14 +26,24 @@ const links = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [isScroll, setIsScroll] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 30) {
+      if (pathname == "/forum") {
+        setIsDark(true);
+        setIsScroll(false);
+      } else if (window.scrollY > 30 && window.scrollY < window.innerHeight) {
         setIsScroll(true);
+        setIsDark(false);
+      } else if (window.scrollY > window.innerHeight) {
+        setIsDark(true);
+        setIsScroll(false);
       } else {
         setIsScroll(false);
+        setIsDark(false);
       }
     };
 
@@ -45,38 +52,43 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [pathname]);
 
   return (
-    <nav className={`fixed top-0 z-50  w-full  ${isScroll && "glass"}`}>
+    <nav
+      className={`fixed top-0 z-50  w-full transition-all duration-100  ${isScroll && "glass-nav"}  ${isDark && "dark-nav"}`}
+    >
       <div className="container hidden items-center justify-between py-6 lg:flex">
         <Link href={"/"} className="">
           <Image
-            src="/images/logo-white.png"
+            src={
+              isDark || pathname == "/forum"
+                ? "/images/logo-dark.png"
+                : "/images/logo-white.png"
+            }
             alt="Ynsect Logo"
             width={110}
             height={55}
           />
         </Link>
-        <div className="md:block">
+        <div
+          className={`md:block ${isDark || pathname == "/forum" ? " text-primary" : "text-white"}`}
+        >
           <ul className="flex gap-16">
             {links.map((link, i) => (
-              <li
-                key={i}
-                className="link-hover-light text-xl font-thin text-white"
-              >
+              <li key={i} className="link-hover-light text-xl font-light ">
                 <Link href={link.route}>{link.name}</Link>
               </li>
             ))}
           </ul>
         </div>
         <div className="flex gap-6">
-          <div className="rounded-lg border border-primary bg-[#eafff6] p-3 text-3xl transition-all duration-300 hover:border-primary hover:bg-transparent hover:text-primary">
+          <div className="rounded-lg border border-primary bg-white p-3 text-3xl text-primary transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white">
             <Link href="/cart">
               <CiShoppingBasket />
             </Link>
           </div>
-          <div className="flex items-center gap-2 rounded-lg border border-transparent bg-primary px-8 py-3 text-white transition-all duration-300 hover:border-primary hover:bg-transparent hover:text-primary">
+          <div className="flex items-center gap-2 rounded-lg border border-transparent bg-primary px-8 py-3 text-white  transition-all duration-300 hover:border-primary hover:bg-transparent hover:text-primary">
             <span className="text-xl">Join Us</span>
             <span className="text-2xl">
               <GoPlus />
@@ -89,7 +101,11 @@ export default function Navbar() {
         <div className="">
           <Link href={"/"} className="">
             <Image
-              src="/images/logo-white.png"
+              src={
+                isDark || pathname == "/forum"
+                  ? "/images/logo-dark.png"
+                  : "/images/logo-white.png"
+              }
               alt="Ynsect Logo"
               width={80}
               height={40}
@@ -100,7 +116,9 @@ export default function Navbar() {
         <div className="">
           <Sheet>
             <SheetTrigger asChild>
-              <RiMenu3Fill className="p-0 text-2xl text-white" />
+              <RiMenu3Fill
+                className={`${isDark || pathname == "/forum" ? " text-primary" : "text-white"} p-0 text-2xl`}
+              />
             </SheetTrigger>
             <SheetContent side="left" className="w-[80%]">
               <SheetHeader>
@@ -124,8 +142,13 @@ export default function Navbar() {
                 ))}
               </div>
 
-              <div className="mt-6 flex w-full justify-center gap-2 rounded-lg border border-primary py-2  text-xl font-semibold text-primary duration-300 hover:bg-primary hover:text-white">
-                Join Us
+              <div className="mt-12 flex gap-2">
+                <div className="flex w-full justify-center gap-2 rounded-lg border border-primary py-2  text-xl font-semibold text-primary duration-300 hover:bg-primary hover:text-white">
+                  Cart
+                </div>
+                <div className=" flex w-full justify-center gap-2 rounded-lg border border-primary bg-primary  py-2 text-xl font-semibold text-white duration-300 hover:bg-white hover:text-primary">
+                  Join Us
+                </div>
               </div>
               <SheetFooter>
                 <SheetClose asChild></SheetClose>

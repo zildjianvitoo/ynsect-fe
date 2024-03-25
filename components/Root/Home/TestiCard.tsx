@@ -16,9 +16,7 @@ export default function TestiCard({ title, desc, image, name, job }: Props) {
         <FaQuoteLeft />
       </div>
       <p className="text-3xl font-bold text-primary md:text-4xl">{title}</p>
-      <p className="text-lg italic tracking-wide md:text-justify md:text-xl">
-        {desc}
-      </p>
+      <p className="text-lg italic tracking-wide md:text-xl">{desc}</p>
       <hr />
       <div className="flex items-center gap-4">
         <div className="relative h-16 w-16 overflow-hidden rounded-full border md:h-20 md:w-20">
