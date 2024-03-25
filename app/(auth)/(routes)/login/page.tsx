@@ -9,8 +9,11 @@ import LoginForm from "@/components/Auth/Login/LoginForm";
 
 const LoginPage = () => {
   return (
-    <section className="flex h-screen w-full">
-      <section id="login" className="w-1/2 px-40 py-20">
+    <section className="relative h-screen w-full overflow-hidden lg:flex">
+      <section
+        id="login"
+        className="px-8 py-20 sm:px-32 lg:w-1/2 lg:px-8 xl:px-40"
+      >
         <BackButton
           route="/"
           icon={<IoChevronBackCircleOutline />}
@@ -33,12 +36,16 @@ const LoginPage = () => {
           />
         </div>
       </section>
-      <section id="img-container" className="relative  w-1/2">
+      <section
+        id="img-container"
+        className="absolute left-0 top-0 -z-10 h-full w-full lg:relative lg:block lg:w-1/2"
+      >
+        <div className="absolute -z-20 h-full w-full bg-gray-200/70 lg:hidden" />
         <Image
           src={"/images/insects-login.png"}
           alt="insects"
           fill
-          className="object-cover"
+          className="-z-30 object-cover"
         />
       </section>
     </section>

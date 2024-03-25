@@ -11,7 +11,7 @@ type Props = {
 export default function OAuthButton({ provider, icon, text }: Props) {
   return (
     <div
-      className="py-1.5 px-3 border border-secondary rounded-md cursor-pointer hover:bg-green-200  flex-grow flex gap-2 justify-center items-center text-lg"
+      className="flex flex-grow cursor-pointer items-center justify-center gap-2 rounded-md  border border-green-300 px-3 py-1.5 text-lg transition-all duration-300 hover:bg-green-200"
       onClick={() => signIn(provider)}
     >
       <span className="text-2xl text-blue-500">{icon}</span>
