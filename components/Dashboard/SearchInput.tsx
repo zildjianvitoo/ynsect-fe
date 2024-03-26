@@ -30,16 +30,16 @@ export default function SearchInput() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="relative flex items-center">
+        <div className="relative flex h-full w-full items-center">
           <FormField
             control={form.control}
             name="searchValue"
             render={({ field }) => (
-              <FormItem className="w-full">
+              <FormItem className="h-full w-full">
                 <FormControl>
                   <Input
                     placeholder="Cari aktivitas"
-                    className="h-14 px-4 text-xl md:w-96"
+                    className="h-10 w-full  px-2 lg:h-14  lg:w-96 lg:px-4 lg:text-xl"
                     {...field}
                   />
                 </FormControl>

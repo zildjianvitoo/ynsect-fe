@@ -1,5 +1,4 @@
-import Navbar from "@/components/Dashboard/Navbar";
-import Sidebar from "@/components/Dashboard/Sidebar";
+import Navigation from "@/components/Dashboard/Navigation";
 import React, { ReactNode } from "react";
 
 type Props = {
@@ -9,10 +8,8 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <>
-      <Sidebar />
-
-      <main className="ml-80 overflow-hidden tracking-wide">
-        <Navbar />
+      <Navigation />
+      <main className="overflow-hidden tracking-wide tracking-wide lg:ml-80 ">
         {children}
       </main>
     </>

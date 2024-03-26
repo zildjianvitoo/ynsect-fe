@@ -30,9 +30,11 @@ export default function Navbar() {
   const [isScroll, setIsScroll] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
+  const defaultDarkNav = pathname == "/forum" || pathname == "/products";
+
   useEffect(() => {
     const handleScroll = () => {
-      if (pathname == "/forum") {
+      if (defaultDarkNav) {
         setIsDark(true);
         setIsScroll(false);
       } else if (window.scrollY > 30 && window.scrollY < window.innerHeight) {
@@ -52,7 +54,7 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [pathname]);
+  }, [defaultDarkNav]);
 
   return (
     <nav
@@ -62,7 +64,7 @@ export default function Navbar() {
         <Link href={"/"} className="">
           <Image
             src={
-              isDark || pathname == "/forum"
+              isDark || defaultDarkNav
                 ? "/images/logo-dark.png"
                 : "/images/logo-white.png"
             }
@@ -72,7 +74,7 @@ export default function Navbar() {
           />
         </Link>
         <div
-          className={`md:block ${isDark || pathname == "/forum" ? " text-primary" : "text-white"}`}
+          className={`md:block ${isDark || defaultDarkNav ? " text-primary" : "text-white"}`}
         >
           <ul className="flex gap-16">
             {links.map((link, i) => (
@@ -102,7 +104,7 @@ export default function Navbar() {
           <Link href={"/"} className="">
             <Image
               src={
-                isDark || pathname == "/forum"
+                isDark || defaultDarkNav
                   ? "/images/logo-dark.png"
                   : "/images/logo-white.png"
               }
@@ -117,7 +119,7 @@ export default function Navbar() {
           <Sheet>
             <SheetTrigger asChild>
               <RiMenu3Fill
-                className={`${isDark || pathname == "/forum" ? " text-primary" : "text-white"} p-0 text-2xl`}
+                className={`${isDark || defaultDarkNav ? " text-primary" : "text-white"} p-0 text-2xl`}
               />
             </SheetTrigger>
             <SheetContent side="left" className="w-[80%]">
@@ -137,7 +139,9 @@ export default function Navbar() {
                     key={i}
                     className="link-hover-dark max-w-fit list-none text-xl font-light"
                   >
-                    <Link href={link.route}>{link.name}</Link>
+                    <SheetClose asChild>
+                      <Link href={link.route}>{link.name}</Link>
+                    </SheetClose>
                   </li>
                 ))}
               </div>
