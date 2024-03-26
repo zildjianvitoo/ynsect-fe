@@ -5,6 +5,45 @@ import { IoChevronBackCircleOutline } from "react-icons/io5";
 
 type Props = {};
 
+const maggotLifeCycle = [
+  {
+    title: "Telur BSF",
+    image: "/images/Service/telur-bsf.webp",
+    description:
+      "500 - 900 telur/kluster menetas dalam 3 -4 hari dengan Biobox yang sudah disediakan",
+  },
+  {
+    title: "Bayi Larva",
+    image: "/images/Service/bayi-larva.png",
+    description:
+      "Hari pertama, memiliki ukuran kurang dari 1 mm, hampir tidak terlihat dan siap makan",
+  },
+  {
+    title: "Larva Dewasa",
+    image: "/images/Service/larva-dewasa.png",
+    description:
+      "Usia 0 hingga 21 hari, memiliki warna putih kecoklatan dan siap disantap hewan ternak",
+  },
+  {
+    title: "Prepupa",
+    image: "/images/Service/prepupa.png",
+    description:
+      "Dimulai dari hari ke 22, warna mulai menggelap, memanjat dan mencari tempat kering",
+  },
+  {
+    title: "Pupa",
+    image: "/images/Service/pupa.png",
+    description:
+      "Berwarna hitam dan tidak bergerak dalam kurun waktu 7 hari hingga 1 bulan sampai menetas",
+  },
+  {
+    title: "Indukan Dewasa BSF",
+    image: "/images/Service/induka-dewasa-bsf.png",
+    description:
+      "Betina akan bertelur, betina mati setelah bertelur dan jantan mati setelah kawin",
+  },
+];
+
 export default function Biobox({}: Props) {
   return (
     <div className="flex flex-col gap-8 md:gap-10 lg:gap-12">
@@ -28,67 +67,33 @@ export default function Biobox({}: Props) {
           populasi maggot yang berlimpah.
         </p>
       </div>
-      <div className="flex flex-col gap-6 md:gap-10 lg:gap-12">
-        <div className="relative  overflow-hidden rounded-md ">
-          <Image
-            src="/images/biobox.jpg"
-            alt="Biobox"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute left-0 top-0 z-10 h-full w-full bg-black/75 " />
-          <div className="relative z-20 flex h-full flex-col justify-center  gap-2  p-4 text-white  lg:px-6 lg:py-8">
-            <h3 className="text-2xl/snug font-bold tracking-wide text-secondary  md:text-4xl/snug">
-              Pengurangan Limbah Organik
-            </h3>
-            <p className=" text-justify text-sm text-slate-100 sm:text-lg md:w-[60%] md:text-xl">
-              Salah satu manfaat utama BioBox adalah kemampuannya untuk mengubah
-              limbah organik menjadi sumber protein yang bernilai tinggi. Dengan
-              memanfaatkan limbah yang sebelumnya dianggap sebagai masalah
-              lingkungan, BioBox membantu mengurangi jumlah sampah dan
-              menciptakan nilai tambah dari limbah tersebut.
-            </p>
-          </div>
-        </div>
-        <div className="relative  overflow-hidden rounded-md ">
-          <Image
-            src="/images/kemudahan-pangan.jpeg"
-            alt="Biobox"
-            fill
-            className="object-cover object-center"
-          />
-          <div className="absolute left-0 top-0 z-10 h-full w-full bg-black/75 " />
-          <div className="relative z-20 flex h-full flex-col items-end justify-center gap-2  p-4   text-white  lg:px-6 lg:py-8">
-            <h3 className="text-2xl/snug font-bold tracking-wide text-secondary  md:text-4xl/snug">
-              Kemudahan Penggunaan
-            </h3>
-            <p className=" text-right text-sm text-slate-100 sm:text-lg md:w-[60%] md:text-xl">
-              BioBox dirancang untuk menjadi alat yang mudah dioperasikan dan
-              dikelola. Dengan sedikit perawatan dan pemantauan, petani atau
-              peternak dapat menghasilkan maggot secara konsisten tanpa
-              memerlukan investasi yang besar dalam hal waktu atau biaya.
-            </p>
-          </div>
-        </div>
-        <div className="relative  overflow-hidden rounded-md ">
-          <Image
-            src="/images/kemandirian-pangan.jpeg"
-            alt="Biobox"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute left-0 top-0 z-10 h-full w-full bg-black/75 " />
-          <div className="relative z-20 flex h-full flex-col justify-center  gap-2  p-4 text-white  lg:px-6 lg:py-8">
-            <h3 className="text-2xl/snug font-bold tracking-wide text-secondary  md:text-4xl/snug">
-              Kemandirian Pangan
-            </h3>
-            <p className=" text-justify text-sm text-slate-100 sm:text-lg md:w-[60%] md:text-xl">
-              Dengan menggunakan BioBox untuk memproduksi pakan alternatif,
-              petani dan peternak dapat meningkatkan kemandirian pangan mereka.
-              Mereka tidak lagi tergantung pada pasokan pakan luar yang
-              seringkali tidak terjangkau atau sulit didapatkan.
-            </p>
-          </div>
+      <div className="flex flex-col">
+        <h3 className="ml-4 text-xl font-bold text-primary md:text-3xl">
+          Siklus Hidup Maggot
+        </h3>
+        <hr className="mt-4 border-b border-primary" />
+        <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {maggotLifeCycle.map((item) => (
+            <div
+              key={item.title}
+              className="flex flex-col rounded-md border border-[#e8e8e8] bg-secondary p-4"
+            >
+              <figure className="relative h-[170px]  ">
+                <Image
+                  src={item.image}
+                  alt="Telur BSF"
+                  fill
+                  className="rounded-md object-cover"
+                />
+              </figure>
+              <h4 className="mt-4 text-xl font-bold md:text-3xl">
+                {item.title}
+              </h4>
+              <p className="mt-2 text-slate-500 md:max-w-[80%]">
+                {item.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

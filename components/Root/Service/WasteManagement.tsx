@@ -20,14 +20,16 @@ export default function WasteManagement({}: Props) {
           Waste Management
         </h1>
         <p className=" mt-2 text-lg text-[#03201E] md:text-xl">
-          BioBox adalah sistem budidaya maggot yang terencana dan terkontrol,
-          yang memanfaatkan limbah organik sebagai substrat untuk memproduksi
-          larva. Sistem ini biasanya terdiri dari kontainer yang dilengkapi
-          dengan filter dan ventilasi udara yang sesuai untuk menciptakan
-          kondisi optimal bagi pertumbuhan larva. Dalam BioBox, limbah organik
-          seperti sisa makanan atau pupuk kandang digunakan sebagai bahan baku
-          untuk menarik lalat betina untuk bertelur, sehingga menghasilkan
-          populasi maggot yang berlimpah.
+          Ynsect berinovasi memberikan layanan pengolahan limbah, hal ini
+          dikarenakan maggot BSF dapat mengonsumsi jumlah limbah organik yang
+          besar, termasuk sisa makanan dan kotoran, dan mengubahnya menjadi
+          kompos yang kaya akan nutrisi serta biomassa yang kaya akan protein.
+          Proses ini umumnya melibatkan pengumpulan bahan limbah organik dan
+          memberi larva lalat makan di lingkungan yang terkontrol. Saat maggot
+          makan, mereka memecah materi organik dan mempercepat dekomposisinya.
+          Kompos yang dihasilkan dapat digunakan sebagai pupuk dalam pertanian,
+          sementara larva maggot hidup yang dihasilkan dapat diolah menjadi
+          pakan hewan atau digunakan dalam aplikasi lainnya.
         </p>
       </div>
       <div className="flex flex-col gap-8 md:gap-10 lg:gap-12">
