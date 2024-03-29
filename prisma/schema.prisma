@@ -52,3 +52,17 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+
+model Agenda {
+  id        String @id @default(uuid())
+  title     String
+  status    Status
+  image     String?
+}
+
+enum Status {
+  PREPARATION
+  INPROGRESS
+  DONE
+}
