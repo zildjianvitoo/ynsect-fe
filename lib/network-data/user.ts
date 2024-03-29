@@ -1,11 +1,11 @@
 import { GetAllUsersType } from "@/types/user";
-import { axiosInstace } from "../axiosInstance";
+import { axiosInstance } from "../axiosInstance";
 
 export async function getAllUsers() {
   let isError;
 
   try {
-    const { data } = await axiosInstace.get<GetAllUsersType>("/users");
+    const { data } = await axiosInstance.get<GetAllUsersType>("/users");
     return { data };
   } catch (error) {
     isError = true;

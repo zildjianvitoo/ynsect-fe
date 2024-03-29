@@ -5,3 +5,7 @@ export interface GetAllUsersType {
   no_telp: string;
   alamat: string;
 }
+
+export interface GetUserById {
+  
+}
