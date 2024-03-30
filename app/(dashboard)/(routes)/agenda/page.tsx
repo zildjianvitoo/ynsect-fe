@@ -5,11 +5,18 @@ import React from "react";
 type Props = {};
 
 export default async function AgendaPage({}: Props) {
-  const agendas = await prismadb.agenda.findMany();
-
+  const [agendas, agendaCategories] = await Promise.all([
+    prismadb.agenda.findMany({
+      include: {
+        category: true,
+      },
+    }),
+    prismadb.agendaCategory.findMany(),
+  ]);
+  console.log(agendas);
   return (
-    <div className="flex flex-col gap-6 p-6">
-      <Board />
+    <div className="flexflex-col gap-6 p-6">
+      <Board agendas={agendas} agendaCategories={agendaCategories} />
     </div>
   );
 }

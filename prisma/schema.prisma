@@ -56,13 +56,19 @@ model VerificationToken {
 
 model Agenda {
   id        String @id @default(uuid())
+  category  AgendaCategory @relation(fields: [categoryId], references: [id],onDelete: Cascade)
+  categoryId String
   title     String
-  status    Status
   image     String?
 }
 
-enum Status {
-  PREPARATION
-  INPROGRESS
-  DONE
+model AgendaCategory {
+  id        String @id @default(uuid())
+  name      String @unique
+  agendas    Agenda[]
+  @@unique([id,name])
 }
+
+
+
+
