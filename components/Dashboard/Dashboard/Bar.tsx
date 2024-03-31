@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { AxisOptions, Chart } from "react-charts";
-import useChartConfig from "@/hooks/useDemoConfig";
 
 type Amount = {
   weight: number;

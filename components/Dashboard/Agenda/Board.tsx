@@ -1,58 +1,50 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
 
-import Preparation from "./Preparation";
-import InProgress from "./InProgress";
-import Done from "./Done";
-import { DndContext, DragOverlay, DragStartEvent } from "@dnd-kit/core";
-import { SortableContext, useSortable } from "@dnd-kit/sortable";
-import { Agenda, AgendaCategory } from "@prisma/client";
-type Props = {
-  agendas: (Agenda & {
-    category: AgendaCategory;
-  })[];
-  agendaCategories: AgendaCategory[];
-};
+import { useBoardStore } from "@/store/BoardStore";
+import { Divide } from "lucide-react";
+import { useEffect } from "react";
+import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
+import ColumnContainer from "./ColumnContainer";
+import NoSSR from "@/components/NoSSR";
 
-export default function Board({ agendas, agendaCategories }: Props) {
-  const agendaCategoriesId = useMemo(() => {
-    return agendaCategories.map((category) => category.id);
-  }, [agendaCategories]);
+export default function Board() {
+  const [board, getBoard] = useBoardStore((state) => [
+    state.board,
+    state.getBoard,
+  ]);
 
-  const [activeColumn, setActiveColumn] = useState<AgendaCategory | null>(null);
+  useEffect(() => {
+    getBoard();
+  }, [getBoard]);
 
-  const onDragStart = (e: DragStartEvent) => {
-    console.log(e);
-    if (e.active.data.current?.type === "column") {
-      setActiveColumn(e.active.data.current?.column);
-      return;
-    }
+  const handleOnDragEnd = (result: DropResult) => {
+    console.log(result);
   };
 
   return (
-    <DndContext onDragStart={onDragStart}>
-      <SortableContext items={agendaCategoriesId}>
-        <div className="flex items-start gap-6 ">
-          <Preparation
-            agendaCategories={agendaCategories}
-            agendas={agendas.filter(
-              (agenda) => agenda.category.name === "PREPARATION",
-            )}
-          />
-          <InProgress
-            agendaCategories={agendaCategories}
-            agendas={agendas.filter(
-              (agenda) => agenda.category.name === "INPROGRESS",
-            )}
-          />
-          <Done
-            agendaCategories={agendaCategories}
-            agendas={agendas.filter(
-              (agenda) => agenda.category.name === "DONE",
-            )}
-          />
-        </div>
-      </SortableContext>
-    </DndContext>
+    <NoSSR>
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="board" direction="horizontal" type="column">
+          {(provided) => (
+            <div
+              className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+            >
+              {Array.from(board.columns.entries()).map(
+                ([id, column], index) => (
+                  <ColumnContainer
+                    key={id}
+                    agendas={column.agendas}
+                    status={column.id}
+                    index={index}
+                  />
+                ),
+              )}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </NoSSR>
   );
 }
