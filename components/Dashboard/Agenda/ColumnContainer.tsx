@@ -41,22 +41,17 @@ export default function ColumnContainer({ agendas, status, index }: Props) {
             <Droppable droppableId={index.toString()} type="card">
               {(provided, snapshot) => (
                 <div
-                  className={"flex flex-col gap-4"}
+                  className={"space-y-4"}
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >
-                  {agendas.map((agenda, index) => (
+                  {agendas.map((agenda, index: number) => (
                     <Draggable
                       key={agenda.id}
                       draggableId={agenda.id}
                       index={index}
                     >
                       {(provided, snapshotDraggable) => (
-                        // <div
-                        //   ref={provided.innerRef}
-                        //   {...provided.draggableProps}
-                        //   {...provided.dragHandleProps}
-                        // >
                         <AgendaCard
                           agenda={agenda}
                           innerRef={provided.innerRef}
@@ -64,12 +59,11 @@ export default function ColumnContainer({ agendas, status, index }: Props) {
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                         />
-                        // </div>
                       )}
                     </Draggable>
                   ))}
                   {provided.placeholder}
-                  <div className="flex h-10 items-center justify-between rounded-md bg-white p-4">
+                  <div className="flex h-10 cursor-pointer items-center justify-between rounded-md bg-white p-4">
                     <h5 className="text-lg font-semibold text-primary">
                       Tambah Card
                     </h5>

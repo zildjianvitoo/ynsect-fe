@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { HiOutlineMenu } from "react-icons/hi";
@@ -27,6 +28,7 @@ export default function AgendaCard({
           "opacity-60": isDragging,
         },
       )}
+      onClick={() => console.log("aaa")}
       {...props}
     >
       <figure className="relative h-24 w-full items-stretch">
@@ -38,12 +40,8 @@ export default function AgendaCard({
         />
       </figure>
       <div>
-        <h4 className="text-xl font-bold text-primary">Media Tumbuh</h4>
-        <ul className="ml-6 list-disc text-[#777]">
-          <li>Memberikan kompos organik</li>
-          <li>Memberikan kompos organik</li>
-          <li>Memberikan kompos organik</li>
-        </ul>
+        <h4 className="text-xl font-bold text-primary">{agenda.title}</h4>
+        <p className="text-[#777]">{agenda.description}aa</p>
       </div>
       <div className="flex items-center text-[#777]">
         <HiOutlineMenu size={24} />
@@ -51,11 +49,11 @@ export default function AgendaCard({
 
         <p className="ml-1">0/3</p>
       </div>
-      <div className="flex justify-between">
+      <div className="flex items-center justify-between text-[#0070AD]">
         <div className="w-fit rounded-sm bg-[#CFF6FB] px-2 py-1 text-[#0070AD]">
           <p className="font-medium">02/03/2024</p>
         </div>
-        <FaRegEdit />
+        <FaRegEdit className="cursor-pointer text-2xl" />
       </div>
     </div>
   );
