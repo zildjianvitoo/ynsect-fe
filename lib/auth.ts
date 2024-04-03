@@ -1,7 +1,7 @@
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { getServerSession } from "next-auth";
+import { NextAuthOptions, getServerSession } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "./connect";
 import bcrypt from "bcrypt";
@@ -13,7 +13,7 @@ type CredentialsType = {
   password: string;
 };
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({

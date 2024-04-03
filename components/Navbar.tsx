@@ -30,7 +30,8 @@ export default function Navbar() {
   const [isScroll, setIsScroll] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
-  const defaultDarkNav = pathname == "/forum" || pathname == "/products";
+  const defaultDarkNav =
+    pathname == "/forum" || pathname == "/products" || pathname === "/cart";
 
   useEffect(() => {
     const handleScroll = () => {

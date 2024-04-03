@@ -1,7 +1,9 @@
 "use client";
 
 import Navigation from "@/components/Dashboard/Navigation";
-import { useSession } from "next-auth/react";
+
+import { getServerSession } from "next-auth";
+
 import { redirect } from "next/navigation";
 
 import React, { ReactNode } from "react";
@@ -11,10 +13,7 @@ type Props = {
 };
 
 export default function RootLayout({ children }: Props) {
-  const { status } = useSession();
-  if (status === "unauthenticated") {
-    return redirect("/login");
-  }
+  // Todo: make Middleware
   return (
     <>
       <Navigation />

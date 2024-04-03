@@ -6,6 +6,10 @@ export interface GetAllUsersType {
   alamat: string;
 }
 
-export interface GetUserById {
-  
+export interface GetUserById {}
+
+export interface RegisterProps {
+  name: string;
+  email: string;
+  password: string;
 }
