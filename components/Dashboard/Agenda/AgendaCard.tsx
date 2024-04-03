@@ -31,29 +31,26 @@ export default function AgendaCard({
       onClick={() => console.log("aaa")}
       {...props}
     >
-      <figure className="relative h-24 w-full items-stretch">
-        <Image
-          src={"/images/setor-sampah.jpg"}
-          alt="Setor Sampah"
-          fill
-          className="rounded-md object-cover"
-        />
-      </figure>
+      {agenda.image && (
+        <figure className="relative h-24 w-full items-stretch">
+          <Image
+            src={"/images/setor-sampah.jpg"}
+            alt="Setor Sampah"
+            fill
+            className="rounded-md object-cover"
+          />
+        </figure>
+      )}
       <div>
         <h4 className="text-xl font-bold text-primary">{agenda.title}</h4>
         <p className="text-[#777]">{agenda.description}aa</p>
       </div>
-      <div className="flex items-center text-[#777]">
-        <HiOutlineMenu size={24} />
-        <HiOutlineClipboardDocumentList className="ml-6 " size={24} />
 
-        <p className="ml-1">0/3</p>
-      </div>
-      <div className="flex items-center justify-between text-[#0070AD]">
-        <div className="w-fit rounded-sm bg-[#CFF6FB] px-2 py-1 text-[#0070AD]">
+      <div className="flex items-center justify-between ">
+        <div className="w-fit rounded-sm bg-[#FAE5CB] px-2 py-1 text-[#A53309]">
           <p className="font-medium">02/03/2024</p>
         </div>
-        <FaRegEdit className="cursor-pointer text-2xl" />
+        <FaRegEdit className="cursor-pointer text-2xl text-slate-500" />
       </div>
     </div>
   );

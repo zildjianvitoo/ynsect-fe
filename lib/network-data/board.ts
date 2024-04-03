@@ -53,3 +53,16 @@ export async function getAgendasGroupedByColumn() {
 
   return board;
 }
+
+export async function updateAgenda(agenda: Agenda, columnId: TypeColumn) {
+  console.log(agenda);
+  await prismadb.agenda.update({
+    where: {
+      id: agenda.id,
+    },
+    data: {
+      title: agenda.title,
+      status: columnId,
+    },
+  });
+}
