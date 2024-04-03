@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "./connect";
 import bcrypt from "bcrypt";
+import axios from "axios";
 
 type CredentialsType = {
   name: string;
@@ -35,26 +36,16 @@ export const authOptions = {
           return null;
         }
 
-        const user = await prisma.user.findUnique({
-          where: {
-            email: credentials.email,
-          },
-        });
-
-        if (!user) {
-          return null;
-        }
-
-        const passwordMatch = await bcrypt.compare(
-          credentials.password,
-          user.password!,
-        );
-
-        if (!passwordMatch) {
-          return null;
-        }
-
-        return user;
+        axios
+          .post("localhost:3000/users/create", credentials)
+          .then((response) => {
+            const data = response.data;
+            console.log("Response:", data);
+            return response.data;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
       },
     }),
   ],

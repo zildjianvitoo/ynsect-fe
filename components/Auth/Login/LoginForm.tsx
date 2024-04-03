@@ -41,7 +41,6 @@ export default function LoginForm() {
       password: "",
     },
   });
-  console.log(form);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const login = await signIn("credentials", { values, redirect: false });
