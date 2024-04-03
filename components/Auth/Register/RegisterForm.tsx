@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { registerUser } from "@/lib/network-data/auth";
 
 const formSchema = z
   .object({
@@ -56,19 +57,7 @@ export default function RegisterForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const response = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ values }),
-    });
-
-    if (!response.ok) {
-      console.log("Something Went Wrong");
-    } else {
-      router.push("/login");
-    }
+    await registerUser(values);
   }
 
   return (
