@@ -99,7 +99,7 @@ export default function Board() {
       });
 
       // Update di database
-      console.log(movedAgenda);
+
       updateAgenda(movedAgenda, finisihCol.id);
 
       setBoard({

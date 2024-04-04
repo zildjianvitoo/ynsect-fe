@@ -1,11 +1,10 @@
 "use client";
-import React, { useMemo } from "react";
+
 import AgendaCard from "./AgendaCard";
-import { HiPlus } from "react-icons/hi";
 import { Agenda } from "@prisma/client";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { TypeColumn } from "@/types/board";
-import { cn } from "@/lib/utils";
+import AgendaDialog from "./AgendaDialog";
 
 type Props = {
   status: TypeColumn;
@@ -63,7 +62,7 @@ export default function ColumnContainer({ agendas, status, index }: Props) {
                     </Draggable>
                   ))}
                   {provided.placeholder}
-                  <AddAgendaDialog status={status} />
+                  <AgendaDialog status={status} />
                 </div>
               )}
             </Droppable>

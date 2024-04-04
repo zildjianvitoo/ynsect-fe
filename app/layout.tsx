@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/providers/AuthProvider";
-
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
+import { plusJakarta } from "@/public/font";
 
 export const metadata: Metadata = {
   title: "Ynsect",

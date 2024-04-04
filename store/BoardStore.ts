@@ -1,4 +1,3 @@
-import prismadb from "@/lib/connect";
 import {
   getAgendasGroupedByColumn,
   updateAgenda,
