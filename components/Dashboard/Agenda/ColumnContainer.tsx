@@ -63,12 +63,7 @@ export default function ColumnContainer({ agendas, status, index }: Props) {
                     </Draggable>
                   ))}
                   {provided.placeholder}
-                  <div className="flex h-10 cursor-pointer items-center justify-between rounded-md bg-white p-4">
-                    <h5 className="text-lg font-semibold text-primary">
-                      Tambah Card
-                    </h5>
-                    <HiPlus className="cursor-pointer text-lg  text-primary " />
-                  </div>
+                  <AddAgendaDialog status={status} />
                 </div>
               )}
             </Droppable>
