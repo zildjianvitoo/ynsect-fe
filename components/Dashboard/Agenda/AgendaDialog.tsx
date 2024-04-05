@@ -42,7 +42,13 @@ const FormSchema = z.object({
     message: "Description harus berisi minimal 3 karakter.",
   }),
   deadline: z.date(),
-  image: z.instanceof(FileList).optional(),
+  image: z
+    .any()
+    .refine(
+      (file: FileList) => file?.item(0)?.size! <= 5000000,
+      "Ukuran maksimal gambar adalah 5MB",
+    )
+    .optional(),
 });
 
 type FormField = z.infer<typeof FormSchema>;
