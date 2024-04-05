@@ -6,6 +6,7 @@ import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
 import { Agenda } from "@prisma/client";
 import { FaRegEdit } from "react-icons/fa";
 import { cn } from "@/lib/utils";
+import AgendaDialog from "./AgendaDialog";
 
 type Props = {
   agenda: Agenda;
@@ -50,7 +51,7 @@ export default function AgendaCard({
         <div className="w-fit rounded-sm bg-[#FAE5CB] px-2 py-1 text-[#A53309]">
           <p className="font-medium">02/03/2024</p>
         </div>
-        <FaRegEdit className="cursor-pointer text-2xl text-slate-500" />
+        <AgendaDialog status={agenda.status} initialData={agenda} />
       </div>
     </div>
   );

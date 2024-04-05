@@ -1,4 +1,5 @@
 import ProsCard from "@/components/Dashboard/Ask-the-pro/ProsCard";
+import { getAllForums } from "@/lib/network-data/forum";
 
 const dummyData = [
   {
@@ -45,7 +46,7 @@ const dummyData = [
   },
 ];
 
-export default function AskThePro() {
+export default async function AskThePro() {
   return (
     <section
       id="ask-the-pro"

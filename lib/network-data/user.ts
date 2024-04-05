@@ -1,14 +1,22 @@
-import { GetAllUsersType } from "@/types/user";
+import { GetAllUsersResponse, GetUserByIdResponse } from "@/types/user";
 import { axiosInstance } from "../axiosInstance";
 
 export async function getAllUsers() {
-  let isError;
-
   try {
-    const { data } = await axiosInstance.get<GetAllUsersType>("/users");
-    return { data };
+    const { data } = await axiosInstance.get<GetAllUsersResponse>("/users");
+    return { data: data.data };
   } catch (error) {
-    isError = true;
-    return { isError, error };
+    return { error };
+  }
+}
+
+export async function getUserById({ userId }: { userId: string }) {
+  try {
+    const { data } = await axiosInstance.get<GetUserByIdResponse>(
+      `/users/${userId}`,
+    );
+    return { data: data.data };
+  } catch (error) {
+    return { error };
   }
 }

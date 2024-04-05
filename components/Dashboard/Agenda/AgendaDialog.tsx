@@ -36,6 +36,10 @@ import {
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
+import { Agenda } from "@prisma/client";
+import { FaRegEdit } from "react-icons/fa";
+import Image from "next/image";
+import { BsTrash } from "react-icons/bs";
 
 const FormSchema = z.object({
   title: z.string().min(3, {
@@ -51,16 +55,16 @@ const FormSchema = z.object({
 
 type FormField = z.infer<typeof FormSchema>;
 
-type Props = { status: TypeColumn };
+type Props = { status: TypeColumn; initialData?: Agenda };
 
-export default function AgendaDialog({ status }: Props) {
+export default function AgendaDialog({ status, initialData }: Props) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      title: "",
+      title: initialData?.title,
       status: status,
-      deadline: new Date(),
-      description: "",
+      deadline: initialData?.deadline || new Date(),
+      description: initialData?.description,
     },
   });
 
@@ -74,10 +78,14 @@ export default function AgendaDialog({ status }: Props) {
   return (
     <Dialog>
       <DialogTrigger>
-        <div className="flex h-10 w-full cursor-pointer items-center justify-between rounded-md bg-white p-4">
-          <h5 className="text-lg font-semibold text-primary">Tambah Card</h5>
-          <HiPlus className="cursor-pointer text-lg  text-primary " />
-        </div>
+        {initialData ? (
+          <FaRegEdit className="cursor-pointer text-2xl text-slate-500" />
+        ) : (
+          <div className="flex h-10 w-full cursor-pointer items-center justify-between rounded-md bg-white p-4">
+            <h5 className="text-lg font-semibold text-primary">Tambah Card</h5>
+            <HiPlus className="cursor-pointer text-lg  text-primary " />
+          </div>
+        )}
       </DialogTrigger>
       <DialogContent
         className={cn(" max-w-[50%] bg-secondary p-6", plusJakarta.className)}
@@ -190,7 +198,35 @@ export default function AgendaDialog({ status }: Props) {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            {form.watch("image")?.item(0) ? (
+              <div className="flex gap-3">
+                <figure className="relative h-48 max-h-56 w-1/2">
+                  <Image
+                    src={URL.createObjectURL(
+                      form.getValues("image")?.item(0)! || initialData?.image,
+                    )}
+                    alt={"preview image"}
+                    className="object-cover"
+                    fill
+                  />
+                </figure>
+                <BsTrash
+                  className="cursor-pointer text-lg text-red-500 transition-all hover:scale-105 hover:text-red-700"
+                  onClick={() => form.setValue("image", undefined)}
+                />
+              </div>
+            ) : null}
+            <Button type="submit" className="px-6">
+              {initialData ? "Simpan" : "Submit"}
+            </Button>
+            {initialData && (
+              <Button
+                variant={"ghost"}
+                className="ml-2 px-6 text-red-500 hover:bg-red-500 hover:text-white"
+              >
+                Hapus
+              </Button>
+            )}
           </form>
         </Form>
       </DialogContent>

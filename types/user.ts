@@ -1,12 +1,24 @@
-export interface GetAllUsersType {
+export interface User {
   id: number;
   name: string;
   email: string;
-  no_telp: string;
-  alamat: string;
+  phone: string;
+  address: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface GetUserById {}
+export interface GetAllUsersResponse {
+  code: number;
+  status: string;
+  data: User[];
+}
+
+export interface GetUserByIdResponse {
+  code: number;
+  status: string;
+  data: User;
+}
 
 export interface RegisterProps {
   name: string;

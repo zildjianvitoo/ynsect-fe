@@ -60,6 +60,7 @@ model Agenda {
   title     String
   description String @db.Text
   image     String?
+  deadline  DateTime
   createdAt DateTime @default(now())
 }
 
