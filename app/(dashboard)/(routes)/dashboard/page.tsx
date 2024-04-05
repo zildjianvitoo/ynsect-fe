@@ -7,7 +7,7 @@ type Props = {};
 
 export default function DashboardPage({}: Props) {
   return (
-    <div className="flex flex-col gap-6 p-6">
+    <div className="flex flex-col gap-6 overflow-x-auto p-6">
       <CardStatSelection />
       <Agenda />
     </div>

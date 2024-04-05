@@ -1,4 +1,5 @@
 "use client";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import React from "react";
 import { AxisOptions, Chart } from "react-charts";
 
@@ -97,19 +98,23 @@ export default function Bar({ title, weight }: Props) {
           {weight} Kg
         </h2>
       </div>
-      <div className=" h-[300px] w-[900px] overflow-x-auto whitespace-nowrap xl:h-[350px] xl:w-[1100px] ">
-        <Chart
-          options={{
-            data,
-            primaryAxis,
-            secondaryAxes,
-            initialWidth: 900,
-            initialHeight: 300,
-            defaultColors: ["#15514D", "#429689"],
-          }}
-          className="w-full overflow-x-auto whitespace-nowrap"
-        />
-      </div>
+
+      <ScrollArea className="h-[200px] w-[400px] whitespace-nowrap  sm:h-[300px] sm:w-[500px] lg:w-[900px] xl:h-[350px] xl:w-[1100px]">
+        <div className="flex h-[200px] min-w-max sm:h-[300px]">
+          <Chart
+            options={{
+              data,
+              primaryAxis,
+              secondaryAxes,
+              initialWidth: 900,
+              initialHeight: 300,
+              defaultColors: ["#15514D", "#429689"],
+            }}
+          />
+        </div>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
+
       <div className=" flex  gap-x-5 gap-y-3  md:items-center">
         <div className="flex items-center gap-2">
           <div className="h-4 w-4 rounded-full bg-primary" />

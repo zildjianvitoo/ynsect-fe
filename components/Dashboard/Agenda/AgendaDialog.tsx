@@ -7,7 +7,6 @@ import { z } from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -15,14 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { HiPlus } from "react-icons/hi";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { TypeColumn, TypeColumnValues } from "@/types/board";
 import { plusJakarta } from "@/public/font";
 import { cn } from "@/lib/utils";
@@ -76,7 +68,7 @@ export default function AgendaDialog({ status, initialData }: Props) {
   };
 
   return (
-    <Dialog>
+    <Dialog onOpenChange={() => form.reset()}>
       <DialogTrigger>
         {initialData ? (
           <FaRegEdit className="cursor-pointer text-2xl text-slate-500" />
@@ -91,24 +83,17 @@ export default function AgendaDialog({ status, initialData }: Props) {
         className={cn(" max-w-[50%] bg-secondary p-6", plusJakarta.className)}
       >
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className=" space-y-4 lg:space-y-6"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-4">
             <FormField
               control={form.control}
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xl font-bold lg:text-2xl">
+                  <FormLabel className="text-xl font-bold ">
                     Judul Kegiatan
                   </FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Penetasan Telur"
-                      className="h-12 text-lg"
-                      {...field}
-                    />
+                    <Input placeholder="Penetasan Telur" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -119,13 +104,12 @@ export default function AgendaDialog({ status, initialData }: Props) {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xl font-bold lg:text-2xl">
+                  <FormLabel className="text-xl font-bold ">
                     Deskripsi Kegiatan
                   </FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder={`Pemindahan Biobox \nPemberian vitamin `}
-                      className="h-12 text-lg"
                       {...field}
                     />
                   </FormControl>
@@ -138,9 +122,7 @@ export default function AgendaDialog({ status, initialData }: Props) {
               name="deadline"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel className="text-xl font-bold lg:text-2xl">
-                    Deadline
-                  </FormLabel>
+                  <FormLabel className="text-xl font-bold ">Deadline</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -182,15 +164,13 @@ export default function AgendaDialog({ status, initialData }: Props) {
               name="image"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xl font-bold lg:text-2xl">
-                    Foto
-                  </FormLabel>
+                  <FormLabel className="text-xl font-bold ">Foto</FormLabel>
                   <FormControl>
                     <Input
                       type="file"
                       accept="image/jpeg image/jpg image/png image/webp"
                       placeholder="Penetasan Telur"
-                      className="h-12 cursor-pointer text-lg"
+                      className=" cursor-pointer "
                       {...fileRef}
                     />
                   </FormControl>
@@ -200,7 +180,7 @@ export default function AgendaDialog({ status, initialData }: Props) {
             />
             {form.watch("image")?.item(0) ? (
               <div className="flex gap-3">
-                <figure className="relative h-48 max-h-56 w-1/2">
+                <figure className="relative h-36 w-1/2">
                   <Image
                     src={URL.createObjectURL(
                       form.getValues("image")?.item(0)! || initialData?.image,

@@ -4,6 +4,7 @@ import CardStatistics from "./CardStatistics";
 import Chart from "./Bar";
 import Bar from "./Bar";
 import { Calendar } from "@/components/ui/calendar";
+import NoSSR from "@/components/NoSSR";
 
 type Props = {};
 

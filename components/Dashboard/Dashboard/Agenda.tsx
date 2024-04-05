@@ -26,6 +26,7 @@ export default function Agenda({}: Props) {
           modifiersClassNames={{
             notified: "bg-[#429689] hover:!bg-[#429689]/90",
           }}
+          custom
         />
       </div>
       <div className="flex  basis-[60%] flex-col  whitespace-nowrap rounded-xl border border-[#e8e8e8] p-4">
