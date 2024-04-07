@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { axiosInstance } from "../axiosInstance";
 import { RegisterProps } from "@/types/user";
 

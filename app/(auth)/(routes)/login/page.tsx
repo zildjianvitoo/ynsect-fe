@@ -10,6 +10,7 @@ import OAuthButton from "@/components/Button/OAuthButton";
 import LoginForm from "@/components/Auth/Login/LoginForm";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 const LoginPage = () => {
   const { status } = useSession();
@@ -34,14 +35,29 @@ const LoginPage = () => {
         <div className="mt-2">
           <LoginForm />
         </div>
-        <div className="mt-2 text-center text-lg">Or Sign In With</div>
-        <div className="mt-2 flex gap-4">
+        <div className="relative mt-4 h-6">
+          <div className="absolute z-20 flex w-full justify-center">
+            <div className="bg-white px-2 ">Or login in with</div>
+          </div>
+
+          <div className="absolute top-1/2 h-[0.5px] w-full bg-slate-500" />
+        </div>
+        <div className="mt-4 flex gap-4">
           <OAuthButton provider="google" icon={<FcGoogle />} text="Google" />
           <OAuthButton
             provider="facebook"
             icon={<FaFacebook />}
             text="Facebook"
           />
+        </div>
+        <div className="mt-4 text-center text-sm">
+          <span>{"Don't have an account?"}</span>
+          <span>
+            <Link className="font-semibold text-primary" href="/register">
+              {" "}
+              Register Now!
+            </Link>
+          </span>
         </div>
       </section>
       <section

@@ -6,6 +6,7 @@ import { IoChevronBackCircleOutline } from "react-icons/io5";
 import Header from "@/components/Header";
 import OAuthButton from "@/components/Button/OAuthButton";
 import RegisterForm from "@/components/Auth/Register/RegisterForm";
+import Link from "next/link";
 
 const RegisterPage = () => {
   return (
@@ -20,13 +21,19 @@ const RegisterPage = () => {
           text="Back"
         />
         <Header
-          head="SignUp"
+          head="Register"
           desc="Yuk buat akun dan nikmati berbagai fitur menarik dari kami!"
         />
         <div className="mt-4">
           <RegisterForm />
         </div>
-        <div className="mt-4 text-center text-lg">Or Sign In With</div>
+        <div className="relative mt-4 h-6">
+          <div className="absolute z-20 flex w-full justify-center">
+            <div className="bg-white px-2 ">Or register in with</div>
+          </div>
+
+          <div className="absolute top-1/2 h-[0.5px] w-full bg-slate-500" />
+        </div>
         <div className="mt-4 flex gap-4">
           <OAuthButton provider="google" icon={<FcGoogle />} text="Google" />
           <OAuthButton
@@ -34,6 +41,14 @@ const RegisterPage = () => {
             icon={<FaFacebook />}
             text="Facebook"
           />
+        </div>
+        <div className="mt-4 text-center text-sm">
+          <span>{"Don't have an account?"}</span>
+          <span>
+            <Link className="font-semibold text-primary" href="/login">
+              Login Now!
+            </Link>
+          </span>
         </div>
       </section>
       <section

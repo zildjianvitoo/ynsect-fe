@@ -4,6 +4,7 @@ import AuthProvider from "@/providers/AuthProvider";
 import { plusJakarta } from "@/public/font";
 import ProgressBarProviders from "@/providers/ProgressBarProvider";
 import CrispProvider from "@/providers/CrispProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Ynsect",
@@ -24,7 +25,10 @@ export default function RootLayout({
       <body className={plusJakarta.className}>
         <ProgressBarProviders>
           <AuthProvider>
-            <>{children}</>
+            <>
+              <Toaster position="top-right" />
+              {children}
+            </>
           </AuthProvider>
         </ProgressBarProviders>
       </body>

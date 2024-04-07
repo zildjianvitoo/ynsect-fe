@@ -2,7 +2,7 @@
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { IoMailOutline } from "react-icons/io5";
 import { PiLockKeyThin } from "react-icons/pi";
 
@@ -24,6 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { registerUser } from "@/lib/network-data/auth";
+import { toast } from "sonner";
 
 const formSchema = z
   .object({
@@ -41,11 +42,6 @@ export default function RegisterForm() {
   const [isShow, setIsShow] = useState(false);
   const [isShowRepeat, setIsShowRepeat] = useState(false);
   const router = useRouter();
-  const { status } = useSession();
-  if (status === "authenticated") {
-    router.push("/");
-  }
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,7 +53,20 @@ export default function RegisterForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    await registerUser(values);
+    try {
+      await registerUser(values);
+      toast.success("Register akun berhasil", {
+        description: "Silahkan login!",
+        duration: 3000,
+      });
+      return router.push("/login");
+    } catch (error) {
+      toast.error("Terjadi kesalahan pada pengisian data", {
+        description: "Silahkan isi data dengan benar!",
+        duration: 3000,
+      });
+      console.log(error);
+    }
   }
 
   return (
@@ -197,7 +206,7 @@ export default function RegisterForm() {
             form.formState.isSubmitting ? "bg-green-300" : "bg-primary"
           }`}
         >
-          {form.formState.isSubmitting ? "Submitting..." : "Sign In"}
+          {form.formState.isSubmitting ? "Submitting..." : "Register"}
         </button>
       </form>
     </Form>

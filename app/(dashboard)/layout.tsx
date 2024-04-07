@@ -1,10 +1,4 @@
-"use client";
-
 import Navigation from "@/components/Dashboard/Navigation";
-
-import { getServerSession } from "next-auth";
-
-import { redirect } from "next/navigation";
 
 import React, { ReactNode } from "react";
 

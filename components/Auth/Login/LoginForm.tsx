@@ -29,10 +29,6 @@ const formSchema = z.object({
 export default function LoginForm() {
   const [isShow, setIsShow] = useState(false);
   const router = useRouter();
-  const { status } = useSession();
-  if (status === "authenticated") {
-    router.push("/");
-  }
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,7 +41,7 @@ export default function LoginForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const login = await signIn("credentials", { values, redirect: false });
     if (!login?.ok) {
-      console.log("Something Went Wrong");
+      console.log("");
     } else {
       router.push("/");
     }
@@ -114,17 +110,7 @@ export default function LoginForm() {
           />
         </div>
 
-        <div className="mt-4 flex items-center gap-2">
-          <input
-            type="checkbox"
-            id="remember"
-            className="h-5 w-5 rounded-xl border-gray-300 bg-gray-100 text-green-600 focus:ring-green-500"
-          />
-          <label className="text-lg" htmlFor="remember">
-            Remember Me
-          </label>
-        </div>
-        <div className="mt-6">
+        <div className="mt-8">
           <button
             disabled={form.formState.isSubmitting}
             type="submit"
@@ -132,7 +118,7 @@ export default function LoginForm() {
               form.formState.isSubmitting ? "bg-green-300" : "bg-primary"
             }`}
           >
-            {form.formState.isSubmitting ? "Submitting..." : "Signup"}
+            {form.formState.isSubmitting ? "Submitting..." : "Login"}
           </button>
         </div>
       </form>
