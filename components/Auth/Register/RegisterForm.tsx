@@ -61,11 +61,11 @@ export default function RegisterForm() {
       });
       return router.push("/login");
     } catch (error) {
+      console.log(error);
       toast.error("Terjadi kesalahan pada pengisian data", {
         description: "Silahkan isi data dengan benar!",
         duration: 3000,
       });
-      console.log(error);
     }
   }
 

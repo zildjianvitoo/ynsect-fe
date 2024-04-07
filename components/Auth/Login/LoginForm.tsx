@@ -39,11 +39,14 @@ export default function LoginForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const login = await signIn("credentials", { values, redirect: false });
-    if (!login?.ok) {
-      console.log("");
-    } else {
-      router.push("/");
+    try {
+      const login = await signIn("credentials", {
+        values,
+        redirect: false,
+      });
+      router.push("/dashboard");
+    } catch (error) {
+      console.log(error);
     }
   }
 
