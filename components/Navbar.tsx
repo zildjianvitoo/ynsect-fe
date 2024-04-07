@@ -33,7 +33,7 @@ export default function Navbar() {
   const defaultDarkNav =
     pathname.startsWith("/forum") ||
     pathname.startsWith("/products") ||
-    pathname.startsWith("/services") ||
+    pathname.startsWith("/services/") ||
     pathname == "/cart";
 
   useEffect(() => {

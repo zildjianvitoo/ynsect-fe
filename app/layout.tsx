@@ -3,6 +3,7 @@ import "./globals.css";
 import AuthProvider from "@/providers/AuthProvider";
 import { plusJakarta } from "@/public/font";
 import ProgressBarProviders from "@/providers/ProgressBarProvider";
+import CrispProvider from "@/providers/CrispProvider";
 
 export const metadata: Metadata = {
   title: "Ynsect",
@@ -19,6 +20,7 @@ export default function RootLayout({
       <head>
         <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon" />
       </head>
+      <CrispProvider />
       <body className={plusJakarta.className}>
         <ProgressBarProviders>
           <AuthProvider>
