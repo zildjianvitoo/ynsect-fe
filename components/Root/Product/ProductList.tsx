@@ -7,6 +7,8 @@ import ProductCard from "./ProductCard";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Product } from "@/types/product";
+import { useState } from "react";
 
 const dummyData = [
   {
@@ -48,14 +50,18 @@ const dummyData = [
 ];
 
 const FormSchema = z.object({
-  searchValue: z.string().min(2, {
-    message: "Minimal 2 karakter",
-  }),
+  searchValue: z.string().optional(),
 });
+
+type Props = {
+  products: Product[];
+};
 
 type FormFields = z.infer<typeof FormSchema>;
 
-export default function ProductList() {
+export default function ProductList({ products }: Props) {
+  const [productList, setProductList] = useState(products);
+
   const form = useForm<FormFields>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -64,7 +70,15 @@ export default function ProductList() {
   });
 
   function onSubmit(fields: FormFields) {
-    console.log(fields);
+    if (!fields.searchValue) {
+      setProductList(products);
+      return;
+    }
+
+    const newProductList = productList.filter((product) =>
+      product.name.toLowerCase().includes(fields.searchValue!.toLowerCase()),
+    );
+    setProductList(newProductList);
   }
 
   return (
@@ -107,14 +121,20 @@ export default function ProductList() {
         </Form>
       </div>
       <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {dummyData.map((item, index) => (
-          <ProductCard
-            key={index}
-            image={item.image}
-            title={item.title}
-            description={item.description}
-          />
-        ))}
+        {productList.length === 0 ? (
+          <p className="mx-auto text-center text-2xl font-semibold lg:col-span-3">
+            Tidak ada produk
+          </p>
+        ) : (
+          productList.map((item, index) => (
+            <ProductCard
+              key={index}
+              image={"/images/logo.png"}
+              title={item.name}
+              description={item.description}
+            />
+          ))
+        )}
       </div>
     </div>
   );

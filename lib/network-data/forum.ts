@@ -1,8 +1,4 @@
-import {
-  Forum,
-  GetAllForumsResponse,
-  GetForumByIdResponse,
-} from "@/types/forum";
+import { GetAllForumsResponse, GetForumByIdResponse } from "@/types/forum";
 import { axiosInstance } from "../axiosInstance";
 
 export async function getAllForums() {
