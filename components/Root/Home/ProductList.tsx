@@ -1,46 +1,11 @@
 import { IoGridOutline } from "react-icons/io5";
 import ProductCard from "../Product/ProductCard";
+import { getAllProducts } from "@/lib/network-data/product";
+import Link from "next/link";
 
-const dummyData = [
-  {
-    image: "/images/logo.png",
-    title: "Larva BSF Kering",
-    description:
-      "Sumber protein yang sempurna untuk ternak dan hewan peliharaan Anda.",
-  },
-  {
-    image: "/images/logo.png",
-    title: "Larva BSF Kering",
-    description:
-      "Sumber protein yang sempurna untuk ternak dan hewan peliharaan Anda.",
-  },
-  {
-    image: "/images/logo.png",
-    title: "Larva BSF Kering",
-    description:
-      "Sumber protein yang sempurna untuk ternak dan hewan peliharaan Anda.",
-  },
-  {
-    image: "/images/logo.png",
-    title: "Larva BSF Kering",
-    description:
-      "Sumber protein yang sempurna untuk ternak dan hewan peliharaan Anda.",
-  },
-  {
-    image: "/images/logo.png",
-    title: "Larva BSF Kering",
-    description:
-      "Sumber protein yang sempurna untuk ternak dan hewan peliharaan Anda.",
-  },
-  {
-    image: "/images/logo.png",
-    title: "Larva BSF Kering",
-    description:
-      "Sumber protein yang sempurna untuk ternak dan hewan peliharaan Anda.",
-  },
-];
+export default async function ProductList() {
+  const { data: products } = await getAllProducts();
 
-export default function ProductList() {
   return (
     <div className="flex flex-col gap-6 ">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -53,22 +18,23 @@ export default function ProductList() {
           </h1>
         </div>
         <div className="mt-2 flex gap-4 md:mt-0">
-          <div className="hidden rounded-lg border border-primary bg-secondary p-4 text-2xl md:block">
+          <Link
+            href={"/products"}
+            className="hidden rounded-lg border border-primary bg-secondary p-4 text-2xl md:block"
+          >
             <IoGridOutline />
-          </div>
-          <div className="rounded-lg bg-primary px-4 py-2 text-lg text-white md:px-6 md:py-3 md:text-xl ">
+          </Link>
+          <Link
+            href={"/products"}
+            className="rounded-lg bg-primary px-4 py-2 text-lg text-white md:px-6 md:py-3 md:text-xl "
+          >
             Lihat Semua
-          </div>
+          </Link>
         </div>
       </div>
       <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {dummyData.map((item, index) => (
-          <ProductCard
-            key={index}
-            image={item.image}
-            title={item.title}
-            description={item.description}
-          />
+        {products.slice(0, 3).map((product, index) => (
+          <ProductCard key={index} product={product} />
         ))}
       </div>
     </div>

@@ -14,13 +14,13 @@ export default function Service() {
           <ServiceCard
             title="Biobox"
             desc="Olah sampah dari rumah dengan Biobox"
-            link="#"
+            link="/services/biobox"
             image="/images/biobox.jpg"
           />
           <ServiceCard
             title="Waste Management"
             desc="Kami hadir siap mengolah limbah organik anda"
-            link="#"
+            link="/services/waste-management"
             image="/images/waste-management.jpg"
           />
         </div>
@@ -28,7 +28,7 @@ export default function Service() {
           <ServiceCard
             title="Setor Sampah"
             desc="Hubungi kami dan petugas akan tiba dirumahmu segera"
-            link="#"
+            link="/services/setor-sampah"
             image="/images/setor-sampah.jpg"
             isJumbo
           />

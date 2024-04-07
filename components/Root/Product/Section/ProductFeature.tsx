@@ -1,12 +1,17 @@
+import { Product } from "@/types/product";
 import ShipmentBox from "../ShipmentBox";
 import TotalBox from "../TotalBox";
 
-export default function ProductFeature() {
+type Props = {
+  product: Product;
+};
+
+export default function ProductFeature({ product }: Props) {
   return (
     <section className="mt-9 flex flex-col gap-8 lg:flex-row">
       <div className="flex   flex-col gap-3">
         <h1 className="text-3xl font-bold  md:text-4xl lg:text-5xl">
-          Larva BSF Kering
+          {product.name}
         </h1>
         <p>
           Larva kering adalah sumber protein yang sangat baik dan dapat menjadi
@@ -15,7 +20,7 @@ export default function ProductFeature() {
         </p>
         <div className="flex items-center gap-1">
           <h1 className="text-3xl font-bold  md:text-4xl lg:text-5xl">
-            IDR 32,000
+            IDR {product.price.toLocaleString("id-ID")}
           </h1>
           <p className="text-xl text-slate-500 md:text-2xl lg:text-3xl">/kg</p>
         </div>

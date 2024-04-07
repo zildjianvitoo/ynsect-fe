@@ -2,7 +2,7 @@ import ProductList from "@/components/Root/Product/ProductList";
 import { getAllProducts } from "@/lib/network-data/product";
 
 export default async function Product() {
-  const { data: products, error } = await getAllProducts();
+  const { data: products } = await getAllProducts();
 
   if (products) {
     return (

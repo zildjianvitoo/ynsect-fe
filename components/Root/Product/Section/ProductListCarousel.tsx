@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Carousel,
@@ -11,49 +11,24 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import ProductCard from "../ProductCard";
+import { getAllProducts } from "@/lib/network-data/product";
+import { Product } from "@/types/product";
 
-const dummyData = [
-  {
-    image: "/images/logo.png",
-    title: "Larva BSF Kering",
-    description:
-      "Sumber protein yang sempurna untuk ternak dan hewan peliharaan Anda.",
-  },
-  {
-    image: "/images/logo.png",
-    title: "Larva BSF Kering",
-    description:
-      "Sumber protein yang sempurna untuk ternak dan hewan peliharaan Anda.",
-  },
-  {
-    image: "/images/logo.png",
-    title: "Larva BSF Kering",
-    description:
-      "Sumber protein yang sempurna untuk ternak dan hewan peliharaan Anda.",
-  },
-  {
-    image: "/images/logo.png",
-    title: "Larva BSF Kering",
-    description:
-      "Sumber protein yang sempurna untuk ternak dan hewan peliharaan Anda.",
-  },
-  {
-    image: "/images/logo.png",
-    title: "Larva BSF Kering",
-    description:
-      "Sumber protein yang sempurna untuk ternak dan hewan peliharaan Anda.",
-  },
-  {
-    image: "/images/logo.png",
-    title: "Larva BSF Kering",
-    description:
-      "Sumber protein yang sempurna untuk ternak dan hewan peliharaan Anda.",
-  },
-];
+export default function ProductListCarousel() {
+  const [productList, setProductList] = useState<Product[]>([]);
 
-type Props = {};
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const { data } = await getAllProducts();
+        setProductList(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProducts();
+  }, []);
 
-export default function ProductListCarousel({}: Props) {
   return (
     <section className="mt-8 ">
       <div className="flex flex-col gap-6">
@@ -73,16 +48,12 @@ export default function ProductListCarousel({}: Props) {
             className="cursor-grab"
           >
             <CarouselContent>
-              {dummyData.map((product, index) => (
+              {productList.map((product, index) => (
                 <CarouselItem
                   key={index}
                   className="md:basis-1/2 lg:basis-[30%]"
                 >
-                  <ProductCard
-                    title={product.title}
-                    image={product.image}
-                    description={product.description}
-                  />
+                  <ProductCard product={product} />
                 </CarouselItem>
               ))}
             </CarouselContent>

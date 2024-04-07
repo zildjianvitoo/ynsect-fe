@@ -41,32 +41,50 @@ export default function Footer() {
                 </h4>
                 <ul className="flex flex-col gap-3 text-base text-slate-500 md:gap-4 md:text-lg">
                   <li>
-                    <Link href={""} className="duration-200 hover:text-primary">
+                    <Link
+                      href={"/products/"}
+                      className="duration-200 hover:text-primary"
+                    >
                       Larva BSF Kering
                     </Link>
                   </li>
                   <li>
-                    <Link href={""} className="duration-200 hover:text-primary">
+                    <Link
+                      href={"/products/"}
+                      className="duration-200 hover:text-primary"
+                    >
                       Protein BSF Larva
                     </Link>
                   </li>
                   <li>
-                    <Link href={""} className="duration-200 hover:text-primary">
+                    <Link
+                      href={"/products/"}
+                      className="duration-200 hover:text-primary"
+                    >
                       Minyak BSF Larva
                     </Link>
                   </li>
                   <li>
-                    <Link href={""} className="duration-200 hover:text-primary">
+                    <Link
+                      href={"/products/"}
+                      className="duration-200 hover:text-primary"
+                    >
                       BSF Larva Hidup
                     </Link>
                   </li>
                   <li>
-                    <Link href={""} className="duration-200 hover:text-primary">
+                    <Link
+                      href={"/products/"}
+                      className="duration-200 hover:text-primary"
+                    >
                       Pelet BSF
                     </Link>
                   </li>
                   <li>
-                    <Link href={""} className="duration-200 hover:text-primary">
+                    <Link
+                      href={"/products/"}
+                      className="duration-200 hover:text-primary"
+                    >
                       Pupuk BSF
                     </Link>
                   </li>
@@ -78,22 +96,34 @@ export default function Footer() {
                 </h4>
                 <ul className="flex flex-col gap-3 text-base text-slate-500 md:gap-4 md:text-lg">
                   <li>
-                    <Link href={""} className="duration-200 hover:text-primary">
+                    <Link
+                      href={"/services/biobox"}
+                      className="duration-200 hover:text-primary"
+                    >
                       Biobox
                     </Link>
                   </li>
                   <li>
-                    <Link href={""} className="duration-200 hover:text-primary">
+                    <Link
+                      href={"/services/waste-management"}
+                      className="duration-200 hover:text-primary"
+                    >
                       Waste Management
                     </Link>
                   </li>
                   <li>
-                    <Link href={""} className="duration-200 hover:text-primary">
+                    <Link
+                      href={"/services/setor-sampah"}
+                      className="duration-200 hover:text-primary"
+                    >
                       Setor Sampah
                     </Link>
                   </li>
                   <li>
-                    <Link href={""} className="duration-200 hover:text-primary">
+                    <Link
+                      href={"/forum"}
+                      className="duration-200 hover:text-primary"
+                    >
                       Forum
                     </Link>
                   </li>
@@ -105,12 +135,18 @@ export default function Footer() {
                 </h4>
                 <ul className="flex flex-col gap-3 text-base text-slate-500 md:gap-4 md:text-lg">
                   <li>
-                    <Link href={""} className="duration-200 hover:text-primary">
+                    <Link
+                      href={"/#CTA"}
+                      className="duration-200 hover:text-primary"
+                    >
                       Our Story
                     </Link>
                   </li>
                   <li>
-                    <Link href={""} className="duration-200 hover:text-primary">
+                    <Link
+                      href={"/#feature"}
+                      className="duration-200 hover:text-primary"
+                    >
                       Benefits
                     </Link>
                   </li>

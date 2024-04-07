@@ -127,12 +127,7 @@ export default function ProductList({ products }: Props) {
           </p>
         ) : (
           productList.map((item, index) => (
-            <ProductCard
-              key={index}
-              image={"/images/logo.png"}
-              title={item.name}
-              description={item.description}
-            />
+            <ProductCard key={index} product={item} />
           ))
         )}
       </div>

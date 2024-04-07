@@ -8,10 +8,6 @@ import { getAllUsers } from "@/lib/network-data/user";
 import { useEffect } from "react";
 
 export default async function Home() {
-  const { data, isError } = await getAllUsers();
-
-  console.log(data);
-
   return (
     <>
       <Hero />
