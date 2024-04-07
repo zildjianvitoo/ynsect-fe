@@ -31,7 +31,7 @@ export default function Navbar() {
   const [isDark, setIsDark] = useState(false);
 
   const defaultDarkNav =
-    pathname.startsWith("/products") ||
+    pathname.startsWith("/forum") ||
     pathname.startsWith("/products") ||
     pathname.startsWith("/services") ||
     pathname == "/cart";
@@ -89,17 +89,21 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="flex gap-6">
-          <div className="rounded-lg border border-primary bg-white p-3 text-3xl text-primary transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white">
-            <Link href="/cart">
-              <CiShoppingBasket />
-            </Link>
-          </div>
-          <div className="flex items-center gap-2 rounded-lg border border-transparent bg-primary px-8 py-3 text-white  transition-all duration-300 hover:border-primary hover:bg-transparent hover:text-primary">
+          <Link
+            href={"/cart"}
+            className="rounded-lg border border-primary bg-white p-3 text-3xl text-primary transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white"
+          >
+            <CiShoppingBasket />
+          </Link>
+          <Link
+            href={"/login"}
+            className="flex items-center gap-2 rounded-lg border border-transparent bg-primary px-8 py-3 text-white  transition-all duration-300 hover:border-primary hover:bg-transparent hover:text-primary"
+          >
             <span className="text-xl">Join Us</span>
             <span className="text-2xl">
               <GoPlus />
             </span>
-          </div>
+          </Link>
         </div>
       </div>
 

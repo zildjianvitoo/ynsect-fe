@@ -18,7 +18,7 @@ export default function ProductCard({ product }: Props) {
     >
       <figure className="relative mx-auto size-40 lg:size-52 xl:size-64">
         <Image
-          src={"/images/logo-ynsect.jpg"}
+          src={"/images/logo.jpg"}
           alt={product.name}
           fill
           className="object-cover "
