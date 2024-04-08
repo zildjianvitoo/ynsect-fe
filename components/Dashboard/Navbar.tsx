@@ -33,9 +33,7 @@ const links = [
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
   const { data } = useSession();
-  console.log(data?.user);
   const router = useRouter();
 
   async function handleLogout() {
