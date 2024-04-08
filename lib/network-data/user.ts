@@ -1,4 +1,8 @@
-import { GetAllUsersResponse, GetUserByIdResponse } from "@/types/user";
+import {
+  GetAllUsersResponse,
+  GetUserByIdResponse,
+  RegisterProps,
+} from "@/types/user";
 import { axiosInstance } from "../axiosInstance";
 
 export async function getAllUsers() {
@@ -19,4 +23,13 @@ export async function getUserById({ userId }: { userId: string }) {
   } catch (error) {
     return { error };
   }
+}
+
+export async function registerUser({ name, email, password }: RegisterProps) {
+  const { data } = await axiosInstance.post("/user/register", {
+    name,
+    email,
+    password,
+  });
+  return { data };
 }

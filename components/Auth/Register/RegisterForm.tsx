@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { registerUser } from "@/lib/network-data/auth";
+import { registerUser } from "@/lib/network-data/user";
 import { toast } from "sonner";
 
 const formSchema = z
