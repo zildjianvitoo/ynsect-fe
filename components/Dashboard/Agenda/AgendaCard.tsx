@@ -1,12 +1,10 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { HiOutlineMenu } from "react-icons/hi";
-import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
-import { Agenda } from "@prisma/client";
-import { FaRegEdit } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 import AgendaDialog from "./AgendaDialog";
+import { Agenda } from "@/types/board";
+import { parseISO, format } from "date-fns";
 
 type Props = {
   agenda: Agenda;
@@ -20,6 +18,8 @@ export default function AgendaCard({
   innerRef,
   ...props
 }: Props) {
+  const date = parseISO(agenda.deadline);
+  const formattedDate = format(date, "dd/MM/yyyy");
   return (
     <div
       ref={innerRef}
@@ -49,7 +49,7 @@ export default function AgendaCard({
 
       <div className="flex items-center justify-between ">
         <div className="w-fit rounded-sm bg-[#FAE5CB] px-2 py-1 text-[#A53309]">
-          <p className="font-medium">02/03/2024</p>
+          <p className="font-medium">{formattedDate}</p>
         </div>
         <AgendaDialog status={agenda.status} initialData={agenda} />
       </div>

@@ -1,9 +1,8 @@
 "use client";
 
 import AgendaCard from "./AgendaCard";
-import { Agenda } from "@prisma/client";
 import { Draggable, Droppable } from "react-beautiful-dnd";
-import { TypeColumn } from "@/types/board";
+import { Agenda, TypeColumn } from "@/types/board";
 import AgendaDialog from "./AgendaDialog";
 
 type Props = {

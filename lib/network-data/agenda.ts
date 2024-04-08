@@ -2,13 +2,14 @@ import {
   Agenda,
   Board,
   Column,
+  CreateAgendaParams,
   GetAllAgendasResponse,
   TypeColumn,
 } from "@/types/board";
 
 import { axiosInstance } from "../axiosInstance";
 
-export async function getAgendasGroupedByColumn() {
+export async function getAllAgendasGroupedByColumn() {
   let agendas;
   try {
     const { data } = await axiosInstance.get<GetAllAgendasResponse>("/agendas");
@@ -65,17 +66,38 @@ export async function getAgendasGroupedByColumn() {
   return board;
 }
 
-// export async function updateAgenda(agenda: Agenda, columnId: TypeColumn) {
-//   console.log(agenda);
-//   await prismadb.agenda.update({
-//     where: {
-//       id: agenda.id,
-//     },
-//     data: {
-//       title: agenda.title,
-//       status: columnId,
-//     },
-//   });
-// }
+export async function createAgenda({
+  title,
+  deadline,
+  description,
+  image,
+  status,
+}: CreateAgendaParams) {
+  const formData = new FormData();
 
-export async function getAllAgenda() {}
+  console.log(deadline);
+
+  formData.append("title", title);
+  formData.append("deadline", deadline);
+  formData.append("description", description);
+  formData.append("image", image);
+  formData.append("status", status);
+
+  const { data } = await axiosInstance.post("/agendas", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  return { data: data.data };
+}
+
+export async function updateAgenda(agenda: Agenda, columnId: TypeColumn) {
+  console.log(agenda);
+}
+
+export async function deleteAgenda({ agendaId }: { agendaId: string }) {
+  const { data } = await axiosInstance.delete(`/agendas/${agendaId}`);
+
+  return { data: data.data };
+}

@@ -1,5 +1,5 @@
 import {
-  getAgendasGroupedByColumn,
+  getAllAgendasGroupedByColumn,
   updateAgenda,
 } from "@/lib/network-data/agenda";
 import { Agenda, Board, Column, TypeColumn } from "@/types/board";
@@ -17,7 +17,8 @@ export const useBoardStore = create<BoardState>((set) => ({
     columns: new Map<TypeColumn, Column>(),
   },
   getBoard: async () => {
-    const board = await getAgendasGroupedByColumn();
+    const board = await getAllAgendasGroupedByColumn();
+
     set({ board });
   },
   setBoard: (board) => {
