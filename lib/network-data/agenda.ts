@@ -1,4 +1,5 @@
 import {
+  Agenda,
   Board,
   Column,
   GetAllAgendasResponse,
@@ -8,11 +9,16 @@ import {
 import { axiosInstance } from "../axiosInstance";
 
 export async function getAgendasGroupedByColumn() {
-  const { data } = await axiosInstance.get<GetAllAgendasResponse>("/agendas");
-  const agendas = data.data;
+  let agendas;
+  try {
+    const { data } = await axiosInstance.get<GetAllAgendasResponse>("/agendas");
+    agendas = data.data;
+  } catch (error) {
+    console.log(error);
+  }
 
   //Pakai Map Object untuk Grouping berdasarkan Status dari Agenda
-  const columns = agendas.reduce((acc, agenda) => {
+  const columns = agendas!.reduce((acc, agenda) => {
     if (!acc.get(agenda.status)) {
       acc.set(agenda.status, {
         id: agenda.status,
