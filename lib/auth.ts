@@ -29,23 +29,26 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        name: { label: "Name", type: "text" },
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials: CredentialsType): Promise<any> {
+        console.log(credentials);
         if (credentials.email && credentials.password) {
-          console.log(credentials);
-          axios
-            .post("http://localhost:8000/user/login", credentials)
-            .then((response) => {
-              const data = response.data;
-              console.log("Response:", data);
-              return response.data;
-            })
-            .catch((error) => {
-              console.error("Error:", error);
-            });
+          try {
+            const response = await axios.post(
+              "http://localhost:8000/user/login",
+              {
+                email: credentials.email,
+                password: credentials.password,
+              },
+            );
+            console.log("Response:", response.data);
+            return response.data;
+          } catch (error) {
+            console.error("Error:", error);
+            throw error;
+          }
         }
       },
     }),
@@ -56,14 +59,11 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, user }) {
-      user && (token.user = user);
-      return token;
+      return { ...token, ...user };
     },
     async session({ session, token }) {
-      if (session.user) {
-        session.user = token.name;
-        return session;
-      }
+      session.user = token as any;
+      return session;
     },
   },
 };

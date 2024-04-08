@@ -18,6 +18,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -39,14 +40,32 @@ export default function LoginForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    const { email, password } = values;
+
     try {
-      const login = await signIn("credentials", {
-        values,
+      const response: any = await signIn("credentials", {
+        email,
+        password,
         redirect: false,
       });
-      router.push("/dashboard");
-    } catch (error) {
-      console.log(error);
+      console.log({ response });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      if (response?.ok) {
+        console.log("Login Successful", response);
+        toast.success("Selamat Datang di Dashboardmu!", {
+          description: "Semoga harimu menyenangkan",
+        });
+        router.push("/dashboard");
+        router.refresh();
+      }
+    } catch (error: any) {
+      console.error("Login Failed:", error);
+      toast.error("Terjadi kesalahan pada pengisian data", {
+        description: "Silahkan isi data dengan benar!",
+      });
     }
   }
 
