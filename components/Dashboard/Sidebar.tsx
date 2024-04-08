@@ -25,10 +25,12 @@ const links = [
 export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
+
   async function handleLogout() {
     await signOut({ redirect: false, callbackUrl: "/" });
     return router.push("/");
   }
+
   return (
     <aside className="fixed hidden h-screen w-80 flex-col gap-14 border-r bg-secondary py-8 pl-6 lg:flex ">
       <Image

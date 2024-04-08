@@ -16,9 +16,10 @@ import {
 import { PiKeyboard } from "react-icons/pi";
 import { HiOutlinePresentationChartLine } from "react-icons/hi";
 import { RiQuestionnaireLine } from "react-icons/ri";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { TbLogout2 } from "react-icons/tb";
 const links = [
   { name: "Beranda", icon: <PiKeyboard />, route: "/dashboard" },
   { name: "Agenda", icon: <GoClock />, route: "/agenda" },
@@ -34,6 +35,14 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname();
   const { data } = useSession();
+
+  const router = useRouter();
+
+  async function handleLogout() {
+    await signOut({ redirect: false, callbackUrl: "/" });
+    return router.push("/");
+  }
+
   return (
     <div className="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between lg:p-6">
       <div className="flex items-center justify-between p-3 px-6 lg:block lg:p-0">
@@ -66,7 +75,7 @@ export default function Navbar() {
                 />
               </SheetTitle>
             </SheetHeader>
-            <div className="mt-10 flex flex-col gap-8">
+            <ul className="mt-10 flex flex-col gap-8">
               {links.map((link, i) => (
                 <li
                   key={i}
@@ -81,7 +90,18 @@ export default function Navbar() {
                   </SheetClose>
                 </li>
               ))}
-            </div>
+              <li
+                onClick={handleLogout}
+                className="link-hover-dark max-w-fit list-none text-xl font-light"
+              >
+                <SheetClose asChild>
+                  <div className="flex items-center gap-4">
+                    <TbLogout2 />
+                    Log Out
+                  </div>
+                </SheetClose>
+              </li>
+            </ul>
             <SheetFooter>
               <SheetClose asChild></SheetClose>
             </SheetFooter>
