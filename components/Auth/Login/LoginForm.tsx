@@ -48,10 +48,6 @@ export default function LoginForm() {
         password,
         redirect: false,
       });
-      console.log({ response });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
 
       if (response?.ok) {
         console.log("Login Successful", response);

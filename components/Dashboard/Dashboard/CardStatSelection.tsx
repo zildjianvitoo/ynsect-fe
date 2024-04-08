@@ -43,12 +43,14 @@ export default function CardStatSelection({}: Props) {
           />
         ))}
       </div>
-      <Bar
-        title={activeCardStats}
-        weight={
-          dummyData.filter((item) => item.title === activeCardStats)[0].weight
-        }
-      />
+      <NoSSR>
+        <Bar
+          title={activeCardStats}
+          weight={
+            dummyData.filter((item) => item.title === activeCardStats)[0].weight
+          }
+        />
+      </NoSSR>
     </section>
   );
 }

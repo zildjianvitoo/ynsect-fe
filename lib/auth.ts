@@ -2,9 +2,10 @@ import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions, getServerSession } from "next-auth";
-import { axiosInstance } from "../axiosInstance";
+import { axiosInstance } from "./axiosInstance";
 
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 type CredentialsType = {
   name: string;
@@ -33,21 +34,17 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials: CredentialsType): Promise<any> {
-        console.log(credentials);
         if (credentials.email && credentials.password) {
-          try {
-            const response = await axios.post(
-              "http://localhost:8000/user/login",
-              {
-                email: credentials.email,
-                password: credentials.password,
-              },
-            );
-            console.log("Response:", response.data);
-            return response.data;
-          } catch (error) {
-            console.error("Error:", error);
-            throw error;
+          const { data } = await axiosInstance.post("/user/login", {
+            email: credentials.email,
+            password: credentials.password,
+          });
+          console.log("Response:", data);
+          const user = data.data;
+          if (user) {
+            return user;
+          } else {
+            return null;
           }
         }
       },
@@ -59,10 +56,15 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, user }) {
-      return { ...token, ...user };
+      console.log("ini user", user);
+      console.log("ini token", token);
+      if (user) {
+        token = { ...token, ...user };
+      }
+      return token;
     },
     async session({ session, token }) {
-      session.user = token as any;
+      session.user = token;
       return session;
     },
   },

@@ -6,7 +6,7 @@ import { GoClock, GoGear } from "react-icons/go";
 import { HiOutlinePresentationChartLine } from "react-icons/hi";
 import { PiKeyboard } from "react-icons/pi";
 import { RiQuestionnaireLine } from "react-icons/ri";
-import { redirect, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { TbLogout2 } from "react-icons/tb";
 import { signOut } from "next-auth/react";
 
@@ -24,9 +24,10 @@ const links = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  function handleLogout() {
-    signOut();
-    return redirect("/");
+  const router = useRouter();
+  async function handleLogout() {
+    await signOut({ redirect: false, callbackUrl: "/" });
+    return router.push("/");
   }
   return (
     <aside className="fixed hidden h-screen w-80 flex-col gap-14 border-r bg-secondary py-8 pl-6 lg:flex ">
@@ -48,13 +49,13 @@ export default function Sidebar() {
           </Link>
         ))}
         <div
-          className={`flex items-center gap-4 rounded-l-lg p-4 text-slate-500  transition-all duration-300 hover:bg-green-200`}
+          className={`flex cursor-pointer items-center gap-4 rounded-l-lg p-4 text-slate-500  transition-all duration-300 hover:bg-green-200`}
           onClick={handleLogout}
         >
           <div className="text-2xl">
             <TbLogout2 />
           </div>
-          <div className="text-xl">Log Out</div>
+          <p className="text-xl">Log Out</p>
         </div>
       </ul>
     </aside>

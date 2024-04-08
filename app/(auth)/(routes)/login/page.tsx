@@ -9,13 +9,16 @@ import Header from "@/components/Header";
 import OAuthButton from "@/components/Button/OAuthButton";
 import LoginForm from "@/components/Auth/Login/LoginForm";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const { status } = useSession();
+  const route = useRouter();
+
   if (status === "authenticated") {
-    return redirect("/dashboard");
+    route.push("/dashboard");
   }
   return (
     <section className="relative h-screen w-full overflow-hidden lg:flex">

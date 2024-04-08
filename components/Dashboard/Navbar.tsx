@@ -18,6 +18,7 @@ import { HiOutlinePresentationChartLine } from "react-icons/hi";
 import { RiQuestionnaireLine } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 const links = [
   { name: "Beranda", icon: <PiKeyboard />, route: "/dashboard" },
   { name: "Agenda", icon: <GoClock />, route: "/agenda" },
@@ -32,12 +33,13 @@ const links = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { data } = useSession();
   return (
     <div className="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between lg:p-6">
       <div className="flex items-center justify-between p-3 px-6 lg:block lg:p-0">
         <div className="flex flex-col lg:gap-2">
           <h3 className="text-2xl font-bold text-primary lg:text-3xl">
-            Halo, Dapa
+            Halo, {data?.user?.name}
           </h3>
           <p className=" text-slate-500 lg:text-xl">
             Yuk Cek dashboard kamu hari ini!
