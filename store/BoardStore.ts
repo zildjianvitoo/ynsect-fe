@@ -1,7 +1,7 @@
 import {
   getAgendasGroupedByColumn,
   updateAgenda,
-} from "@/lib/network-data/board";
+} from "@/lib/network-data/agenda";
 import { Board, Column, TypeColumn } from "@/types/board";
 import { Agenda } from "@prisma/client";
 import { create } from "zustand";

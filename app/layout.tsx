@@ -26,7 +26,7 @@ export default function RootLayout({
         <ProgressBarProviders>
           <AuthProvider>
             <>
-              <Toaster position="top-right" />
+              <Toaster richColors position="top-right" />
               {children}
             </>
           </AuthProvider>
