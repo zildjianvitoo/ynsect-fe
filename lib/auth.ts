@@ -4,11 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions, getServerSession } from "next-auth";
 import { axiosInstance } from "./axiosInstance";
 
-import axios from "axios";
-import { redirect } from "next/navigation";
-
 type CredentialsType = {
-  name: string;
   email: string;
   password: string;
 };
