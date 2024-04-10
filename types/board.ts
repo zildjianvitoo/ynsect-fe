@@ -40,3 +40,12 @@ export interface CreateAgendaParams {
   deadline: string;
   image: string;
 }
+
+export interface UpdateAgendaProps {
+  agendaId: string;
+  title: string;
+  description: string;
+  status: string;
+  deadline: string;
+  image: string;
+}

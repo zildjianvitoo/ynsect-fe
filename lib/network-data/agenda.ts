@@ -5,6 +5,7 @@ import {
   CreateAgendaParams,
   GetAllAgendasResponse,
   TypeColumn,
+  UpdateAgendaProps,
 } from "@/types/board";
 
 import { axiosInstance } from "../axiosInstance";
@@ -92,8 +93,35 @@ export async function createAgenda({
   return { data: data.data };
 }
 
-export async function updateAgenda(agenda: Agenda, columnId: TypeColumn) {
-  console.log(agenda);
+export async function updateAgenda({
+  agendaId,
+  deadline,
+  description,
+  image,
+  status,
+  title,
+}: UpdateAgendaProps) {
+  const { data } = await axiosInstance.put(`/agendas/${agendaId}`, {
+    deadline,
+    description,
+    image,
+    status,
+    title,
+  });
+
+  return { data: data.data };
+}
+
+export async function updateAgendaStatus(agenda: Agenda, status: string) {
+  const { data } = await axiosInstance.put(`/agendas/${agenda.id}`, {
+    deadline: agenda.deadline,
+    description: agenda.description,
+    image: agenda.image,
+    status: status,
+    title: agenda.title,
+  });
+
+  return { data: data.data };
 }
 
 export async function deleteAgenda({ agendaId }: { agendaId: string }) {

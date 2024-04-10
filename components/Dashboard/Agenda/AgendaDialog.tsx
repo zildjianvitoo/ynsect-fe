@@ -32,7 +32,11 @@ import { FaRegEdit } from "react-icons/fa";
 import Image from "next/image";
 import { BsTrash } from "react-icons/bs";
 import { parseISO } from "date-fns";
-import { createAgenda, deleteAgenda } from "@/lib/network-data/agenda";
+import {
+  createAgenda,
+  deleteAgenda,
+  updateAgenda,
+} from "@/lib/network-data/agenda";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -75,7 +79,25 @@ export default function AgendaDialog({ status, initialData }: Props) {
   const onSubmit = async (formValues: FormField) => {
     const image = formValues?.image?.item(0);
     const { deadline, description, status, title } = formValues;
-    if (!initialData) {
+    setIsOpen(false);
+    if (initialData) {
+      try {
+        const { data } = await updateAgenda({
+          deadline: deadline.toISOString(),
+          description,
+          image,
+          status,
+          title,
+          agendaId: initialData.id,
+        });
+        console.log(data);
+        toast.success("Berhasil membuat Card baru");
+        router.refresh();
+        window.location.reload();
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
       try {
         const { data } = await createAgenda({
           deadline: deadline.toISOString(),
@@ -84,7 +106,7 @@ export default function AgendaDialog({ status, initialData }: Props) {
           status,
           title,
         });
-        setIsOpen(false);
+        toast.success("Berhasil mengupdate Card");
         router.refresh();
         window.location.reload();
       } catch (error) {

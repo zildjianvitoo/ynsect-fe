@@ -35,7 +35,7 @@ export default function AgendaCard({
       {agenda.image && (
         <figure className="relative h-24 w-full items-stretch">
           <Image
-            src={"/images/setor-sampah.jpg"}
+            src={agenda.image}
             alt="Setor Sampah"
             fill
             className="rounded-md object-cover"
