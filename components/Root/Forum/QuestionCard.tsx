@@ -1,74 +1,101 @@
 "use client";
-import Image from "next/image";
-import Reaction from "./Reaction";
+
+import { Comment } from "@/types/comment";
 import { useState } from "react";
+import CommentInput from "./CommentInput";
+import { PiFlagPennant } from "react-icons/pi";
+import { LiaComment } from "react-icons/lia";
+import Link from "next/link";
+import { Bookmark } from "lucide-react";
+import CommentBox from "./CommentBox";
 
 type Props = {
   name: string;
-  created_at: string;
-  image: string;
+  createdAt: string;
   question: string;
   comments: Comment[];
-};
-
-type Comment = {
-  name: string;
-  comment: string;
-  image: string;
+  forumId: string;
+  userId?: number;
+  isDetail?: boolean;
 };
 
 export default function QuestionCard({
   name,
-  created_at,
-  comments,
-  image,
+  createdAt,
   question,
+  comments,
+  forumId,
+  isDetail,
 }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isHelped, setIsHelped] = useState(false);
+  const [isMarked, setIsMarked] = useState(false);
 
-  function toggleOpen() {
-    setIsOpen(!isOpen);
-  }
   return (
     <div className="flex w-full flex-col gap-4 rounded-lg border px-4 py-5 lg:gap-8 lg:px-6 lg:py-10">
-      <div className="flex h-14 items-center gap-4 rounded-lg">
-        <div className="relative size-10 overflow-hidden rounded-full lg:size-16">
-          <Image src={image} alt={name} fill className="object-cover" />
-        </div>
+      <div className="flex h-14 justify-between gap-4 rounded-lg">
         <div className="flex flex-col lg:gap-1">
           <div className="font-semibold lg:text-xl lg:font-bold">{name}</div>
-          <div className="text-sm text-slate-500 lg:text-base">
-            {created_at}
-          </div>
+
+          <div className="text-sm text-slate-500 lg:text-base">{createdAt}</div>
+        </div>
+        <div className="flex items-center gap-3">
+          <Bookmark
+            onClick={() => setIsMarked(!isMarked)}
+            className={`cursor-pointer ${isHelped ? " text-green-600" : "text-slate-500"} `}
+          />
         </div>
       </div>
-      <p className=" text-sm lg:text-lg">{question}</p>
-      <Reaction toggleOpen={toggleOpen} />
-      {isOpen && (
+
+      <p className="text-sm lg:text-lg">{question}</p>
+
+      <div className="flex gap-4 lg:gap-8">
+        <div
+          onClick={() => setIsHelped(!isHelped)}
+          className={`flex cursor-pointer items-center gap-3 ${isHelped ? "text-green-600" : "text-slate-500"} `}
+        >
+          <PiFlagPennant className="text-lg lg:text-2xl " />
+          <div className="hidden text-lg lg:block">Membantu?</div>
+        </div>
+        {isDetail ? (
+          <div className="flex cursor-pointer items-center gap-3 text-slate-500">
+            <LiaComment className="text-lg lg:text-2xl " />
+            <div className="flex gap-1 lg:text-lg">
+              {comments?.length}
+              <span className="hidden text-lg lg:block">Komentar</span>
+            </div>
+          </div>
+        ) : (
+          <Link
+            href={"/forum/" + forumId}
+            className="flex cursor-pointer items-center gap-3 text-slate-500"
+          >
+            <LiaComment className="text-lg lg:text-2xl " />
+            <div className="flex gap-1 lg:text-lg">
+              {comments?.length}
+              <span className="hidden text-lg lg:block">Komentar</span>
+            </div>
+          </Link>
+        )}
+      </div>
+
+      {isDetail && (
         <>
           <hr />
-          {comments.map((comment) => (
-            <div key={comment.name} className="flex flex-col gap-6">
-              <div className="flex h-14 items-center gap-4 rounded-lg pl-1.5">
-                <div className="relative size-10 overflow-hidden rounded-full lg:size-16">
-                  <Image
-                    src={comment.image}
-                    alt={comment.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <div className="font-semibold lg:text-xl lg:font-bold">
-                    {comment.name}
-                  </div>
-                  <div className="text-sm text-slate-500 lg:text-base">
-                    {comment.comment}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+          <CommentInput forumId={forumId} />
+          {comments.map((comment) => {
+            return (
+              <>
+                <CommentBox
+                  commentId={comment.id!}
+                  forumId={forumId}
+                  content={comment.content}
+                  createdAt={comment.createdAt!}
+                  username={comment.user!.name}
+                />
+                <hr />
+              </>
+            );
+          })}
         </>
       )}
     </div>

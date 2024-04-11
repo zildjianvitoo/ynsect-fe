@@ -2,56 +2,58 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Search, SendHorizontal } from "lucide-react";
+import { Pencil, Search, SendHorizontal } from "lucide-react";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FaSquarePlus } from "react-icons/fa6";
-import { postForum } from "@/lib/network-data/forum";
 import { toast } from "sonner";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { postComment, updateComment } from "@/lib/network-data/comment";
+import { BsPencil } from "react-icons/bs";
 
 const FormSchema = z.object({
-  questionValue: z.string().min(2, {
-    message: "Minimal 2 karakter",
-  }),
+  content: z.string(),
 });
 
 type FormFields = z.infer<typeof FormSchema>;
 
-export default function QuestionInput() {
-  const router = useRouter();
+type Props = {
+  oldContent: string;
+  commentId: number;
+  handleEditing: () => void;
+};
+
+export default function EditCommentInput({
+  oldContent,
+  commentId,
+  handleEditing,
+}: Props) {
   const { data } = useSession();
-  const pathname = usePathname();
+  const router = useRouter();
   const form = useForm<FormFields>({
     resolver: zodResolver(FormSchema),
-    defaultValues: {
-      questionValue: "",
+    values: {
+      content: oldContent,
     },
   });
 
   async function onSubmit(values: FormFields) {
     try {
-      if (data) {
-        await postForum({
-          content: values.questionValue,
-          userId: data.user.id,
-          token: data.user.token,
-        });
-        toast.success("Pertanyaan berhasil di posting!", {
-          description: "Silahkan berdiskusi dengan sopan",
-        });
-        if (pathname === "/forum") {
-          return router.refresh();
-        } else {
-          router.refresh();
-          return router.push("/forum");
-        }
-      }
+      await updateComment({
+        content: values.content,
+        id: commentId,
+        token: data?.user.token,
+      });
+      handleEditing();
+      toast.success("Komentar berhasil diubah!", {
+        description: "Silahkan berdiskusi dengan ",
+      });
+      return router.refresh();
     } catch (error) {
       console.log(error);
-      toast.error("Pertanyaan gagal terposting!", {
+      toast.error("Gagal mengubah komentar!", {
         description: "Sepertinya terdapat kesalahan",
       });
     }
@@ -61,16 +63,16 @@ export default function QuestionInput() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="relative flex items-center">
-          <FaSquarePlus className="absolute left-3 text-xl text-slate-500 lg:left-5 lg:text-2xl" />
+          <BsPencil className="absolute left-3 text-slate-500 lg:text-lg" />
           <FormField
             control={form.control}
-            name="questionValue"
+            name="content"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
                   <Input
-                    placeholder="Ketik Pertanyaan"
-                    className="h-10 pl-10  lg:h-14 lg:w-full lg:pl-16 lg:text-xl"
+                    placeholder="Ubah isi Komentar..."
+                    className="h-8 pl-8  lg:h-10 lg:w-full lg:pl-12 lg:text-lg"
                     {...field}
                   />
                 </FormControl>

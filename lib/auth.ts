@@ -31,11 +31,10 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials: CredentialsType): Promise<any> {
         if (credentials.email && credentials.password) {
-          const { data } = await axiosInstance.post("/user/login", {
+          const { data } = await axiosInstance.post("/users/login", {
             email: credentials.email,
             password: credentials.password,
           });
-          console.log("Response:", data);
           const user = data.data;
           if (user) {
             return user;
@@ -52,8 +51,6 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, user }) {
-      console.log("ini user", user);
-      console.log("ini token", token);
       if (user) {
         token = { ...token, ...user };
       }

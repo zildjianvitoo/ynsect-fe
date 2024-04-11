@@ -24,21 +24,21 @@ const links = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const router = useRouter();
 
   async function handleLogout() {
-    await signOut({ redirect: false, callbackUrl: "/" });
-    return router.push("/");
+    await signOut({ redirect: false, callbackUrl: "/login" });
   }
 
   return (
     <aside className="fixed hidden h-screen w-80 flex-col gap-14 border-r bg-secondary py-8 pl-6 lg:flex ">
-      <Image
-        src="/images/logo-dark.png"
-        alt="Ynsect Logo"
-        width={120}
-        height={65}
-      />
+      <Link href="/">
+        <Image
+          src="/images/logo-dark.png"
+          alt="Ynsect Logo"
+          width={120}
+          height={65}
+        />
+      </Link>
       <ul className="flex flex-col gap-6">
         {links.map((link) => (
           <Link
