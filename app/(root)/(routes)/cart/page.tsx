@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
+import Subtotal from "@/components/Root/Cart/Subtotal";
 
 type Props = {};
 
@@ -31,10 +32,7 @@ export default async function CartPage({}: Props) {
               <h3 className=" text-xl font-bold lg:text-2xl">
                 Ringkasan Belanja
               </h3>
-              <div className="mt-2 flex items-center justify-between">
-                <p className="text-slate-500">Subtotal</p>
-                <h3 className=" text-xl font-bold lg:text-2xl">IDR 32,000</h3>
-              </div>
+              <Subtotal />
               <Button className="mt-2 h-12 border border-primary text-lg font-medium">
                 Beli
               </Button>

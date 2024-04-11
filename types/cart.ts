@@ -1,4 +1,4 @@
-interface ProductCart {
+export interface ProductCart {
   id: number;
   name: string;
   price: number;
@@ -18,6 +18,6 @@ export interface GetCartByUserIdResponse {
 }
 
 export interface ProductToCartParams {
-  userId: string;
-  productId: string;
+  userId: number;
+  productId: number;
 }
