@@ -23,9 +23,7 @@ export default function SearchInput() {
     },
   });
 
-  function onSubmit(fields: FormFields) {
-    console.log(fields);
-  }
+  function onSubmit(fields: FormFields) {}
 
   return (
     <Form {...form}>

@@ -5,12 +5,16 @@ import { getCommentByForumId } from "@/lib/network-data/comment";
 
 export default async function QuestionList({ query }: { query: string }) {
   const { data } = await getAllForums();
-  console.log(data);
-  console.log(query);
 
-  const filteredData = data.filter((item) =>
-    item.content.toLowerCase().includes(query?.toLowerCase()),
-  );
+  let filteredData;
+
+  if (query) {
+    filteredData = data.filter((item) =>
+      item.content.toLowerCase().includes(query?.toLowerCase()),
+    );
+  } else {
+    filteredData = data;
+  }
 
   return (
     <main className="flex flex-col gap-6">

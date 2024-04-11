@@ -51,7 +51,6 @@ export default function LoginForm() {
       });
 
       if (response?.ok) {
-        console.log("Login Successful", response);
         toast.success("Selamat Datang di Dashboardmu!", {
           description: "Semoga harimu menyenangkan",
         });

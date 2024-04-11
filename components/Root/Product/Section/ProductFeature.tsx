@@ -7,7 +7,6 @@ type Props = {
 };
 
 export default function ProductFeature({ product }: Props) {
-  console.log(product.description);
   return (
     <section className="mt-9 flex w-full flex-col gap-8 lg:flex-row">
       <div className="flex   w-full flex-grow flex-col gap-3 ">

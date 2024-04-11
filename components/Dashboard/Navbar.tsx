@@ -47,7 +47,7 @@ export default function Navbar() {
 
   async function handleLogout() {
     await signOut({ redirect: false, callbackUrl: "/" });
-    return router.push("/");
+    router.push("/");
   }
 
   return (

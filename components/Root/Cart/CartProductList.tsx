@@ -61,7 +61,7 @@ export default function CartProductList({}: Props) {
       const { data } = await deleteCartByUserId({
         userId: userData?.user.id!,
       });
-      console.log(data);
+
       toast.success("Berhasil menghapus keranjang");
       window.location.reload();
     } catch (error) {
@@ -75,11 +75,10 @@ export default function CartProductList({}: Props) {
 
     if (!currentValueAll) {
       items.map((item) => allArrayValue.push(item.id));
-      console.log(allArrayValue);
+
       form.setValue("items", allArrayValue);
       form.setValue("all", true);
     } else if (currentValueAll) {
-      console.log(allArrayValue);
       form.setValue("all", false);
       form.setValue("items", []);
     }

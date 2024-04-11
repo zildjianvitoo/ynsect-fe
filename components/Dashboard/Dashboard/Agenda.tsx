@@ -20,7 +20,6 @@ export default function Agenda({}: Props) {
       try {
         const agendas = await getAllAgendas();
         setAgendas(agendas);
-        console.log(agendas);
       } catch (error) {
         console.log(error);
         toast.error("Terjadi kesalahan saat mengambil data agenda");

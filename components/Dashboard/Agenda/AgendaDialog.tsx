@@ -90,7 +90,7 @@ export default function AgendaDialog({ status, initialData }: Props) {
           title,
           agendaId: initialData.id,
         });
-        console.log(data);
+
         toast.success("Berhasil membuat Card baru");
         router.refresh();
         window.location.reload();

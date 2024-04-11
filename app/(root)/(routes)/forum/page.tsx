@@ -8,7 +8,6 @@ type Props = {
 };
 
 export default function Forum({ searchParams }: Props) {
-  console.log(searchParams);
   return (
     <section className="mt-[76px] flex flex-col gap-6 lg:container lg:mt-36 lg:flex-row lg:py-3">
       <Sidebar />

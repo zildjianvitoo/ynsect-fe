@@ -24,9 +24,11 @@ const links = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
 
   async function handleLogout() {
     await signOut({ redirect: false, callbackUrl: "/login" });
+    router.push("/");
   }
 
   return (

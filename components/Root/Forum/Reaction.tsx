@@ -11,7 +11,6 @@ type Props = {
 };
 
 export default function Reaction({ toggleOpen, isDetail, forumId }: Props) {
-  console.log(forumId);
   const [isHelped, setIsHelped] = useState(false);
   return (
     <div className="flex gap-4 lg:gap-8">

@@ -41,7 +41,6 @@ export default function Pengaturan() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const { email, name, phone, alamat } = values;
-    console.log(values);
   }
 
   const getName = data?.user?.name || "";
