@@ -9,16 +9,12 @@ type Props = {
 export default function ProductFeature({ product }: Props) {
   console.log(product.description);
   return (
-    <section className="mt-9 flex flex-col gap-8 lg:flex-row">
-      <div className="flex   flex-col gap-3">
+    <section className="mt-9 flex w-full flex-col gap-8 lg:flex-row">
+      <div className="flex   w-full flex-grow flex-col gap-3 ">
         <h1 className="text-3xl font-bold  md:text-4xl lg:text-5xl">
           {product.name}
         </h1>
-        <p>
-          Larva kering adalah sumber protein yang sangat baik dan dapat menjadi
-          alternatif yang bagus untuk memenuhi kebutuhan nutrisi hewan
-          peliharaan Anda.
-        </p>
+        <p className="text-xl">{product.summary}</p>
         <div className="flex items-center gap-1">
           <h1 className="text-3xl font-bold  md:text-4xl lg:text-5xl">
             IDR {product.price.toLocaleString("id-ID")}
@@ -31,7 +27,7 @@ export default function ProductFeature({ product }: Props) {
           dangerouslySetInnerHTML={{ __html: product.description }}
         ></div>
       </div>
-      <div className="flex w-full flex-grow flex-col gap-8">
+      <div className="flex w-1/2 flex-col gap-8">
         <TotalBox productId={product.id} />
         <ShipmentBox />
       </div>
