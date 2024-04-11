@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { HiPlus } from "react-icons/hi";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { TypeColumn, TypeColumnValues } from "@/types/board";
+import { Agenda, TypeColumn, TypeColumnValues } from "@/types/board";
 import { plusJakarta } from "@/public/font";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -28,10 +28,18 @@ import {
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
-import { Agenda } from "@prisma/client";
 import { FaRegEdit } from "react-icons/fa";
 import Image from "next/image";
 import { BsTrash } from "react-icons/bs";
+import { parseISO } from "date-fns";
+import {
+  createAgenda,
+  deleteAgenda,
+  updateAgenda,
+} from "@/lib/network-data/agenda";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const FormSchema = z.object({
   title: z.string().min(3, {
@@ -42,13 +50,7 @@ const FormSchema = z.object({
     message: "Description harus berisi minimal 3 karakter.",
   }),
   deadline: z.date(),
-  image: z
-    .any()
-    .refine(
-      (file: FileList) => file?.item(0)?.size! <= 5000000,
-      "Ukuran maksimal gambar adalah 5MB",
-    )
-    .optional(),
+  image: z.any().optional(),
 });
 
 type FormField = z.infer<typeof FormSchema>;
@@ -56,25 +58,82 @@ type FormField = z.infer<typeof FormSchema>;
 type Props = { status: TypeColumn; initialData?: Agenda };
 
 export default function AgendaDialog({ status, initialData }: Props) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       title: initialData?.title,
       status: status,
-      deadline: initialData?.deadline || new Date(),
+      deadline: initialData?.deadline
+        ? parseISO(initialData?.deadline)
+        : new Date(),
       description: initialData?.description,
     },
   });
 
   const fileRef = form.register("image");
 
-  const onSubmit = (formValues: FormField) => {
+  const onSubmit = async (formValues: FormField) => {
     const image = formValues?.image?.item(0);
-    console.log(formValues);
+    const { deadline, description, status, title } = formValues;
+    setIsOpen(false);
+    if (initialData) {
+      try {
+        const { data } = await updateAgenda({
+          deadline: deadline.toISOString(),
+          description,
+          image,
+          status,
+          title,
+          agendaId: initialData.id,
+        });
+        console.log(data);
+        toast.success("Berhasil membuat Card baru");
+        router.refresh();
+        window.location.reload();
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        const { data } = await createAgenda({
+          deadline: deadline.toISOString(),
+          description,
+          image,
+          status,
+          title,
+        });
+        toast.success("Berhasil mengupdate Card");
+        router.refresh();
+        window.location.reload();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const handleDeleteAgenda = async (agendaId: string) => {
+    try {
+      setIsOpen(false);
+      await deleteAgenda({ agendaId });
+      router.refresh();
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+      toast.error("Terjadi kesalahan", {});
+    }
+  };
+
+  const handleOpenChange = () => {
+    form.reset();
+    setIsOpen((prev) => !prev);
   };
 
   return (
-    <Dialog onOpenChange={() => form.reset()}>
+    <Dialog onOpenChange={handleOpenChange} open={isOpen}>
       <DialogTrigger>
         {initialData ? (
           <FaRegEdit className="cursor-pointer text-2xl text-slate-500" />
@@ -209,6 +268,7 @@ export default function AgendaDialog({ status, initialData }: Props) {
               <Button
                 variant={"ghost"}
                 className="ml-2 px-6 text-red-500 hover:bg-red-500 hover:text-white"
+                onClick={() => handleDeleteAgenda(initialData.id)}
               >
                 Hapus
               </Button>

@@ -32,3 +32,20 @@ export interface GetAllAgendasResponse {
     createdAt: string;
   }[];
 }
+
+export interface CreateAgendaParams {
+  title: string;
+  description: string;
+  status: string;
+  deadline: string;
+  image: string;
+}
+
+export interface UpdateAgendaProps {
+  agendaId: string;
+  title: string;
+  description: string;
+  status: string;
+  deadline: string;
+  image: string;
+}

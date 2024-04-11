@@ -15,7 +15,7 @@ const dummyData = [
     weight: 32,
   },
   {
-    title: "Total Larval Hidup",
+    title: "Total Larva Hidup",
     rangeMonths: "Januari - Maret 2024",
     weight: 28,
   },

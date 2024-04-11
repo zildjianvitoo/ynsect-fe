@@ -2,11 +2,20 @@ import CartProductList from "@/components/Root/Cart/CartProductList";
 import ShipmentBox from "@/components/Root/Product/ShipmentBox";
 import TotalBox from "@/components/Root/Product/TotalBox";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 type Props = {};
 
-export default function CartPage({}: Props) {
+export default async function CartPage({}: Props) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/login");
+  }
+
   return (
     <section className="container mt-36 py-3">
       <div className="flex flex-col gap-6">

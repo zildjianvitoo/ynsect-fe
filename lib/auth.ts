@@ -3,6 +3,8 @@ import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions, getServerSession } from "next-auth";
 import { axiosInstance } from "./axiosInstance";
+import { toast } from "sonner";
+import { AxiosError } from "axios";
 
 type CredentialsType = {
   email: string;
@@ -30,16 +32,24 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials: CredentialsType): Promise<any> {
-        if (credentials.email && credentials.password) {
-          const { data } = await axiosInstance.post("/users/login", {
-            email: credentials.email,
-            password: credentials.password,
-          });
-          const user = data.data;
-          if (user) {
-            return user;
-          } else {
-            return null;
+        try {
+          if (credentials.email && credentials.password) {
+            const { data } = await axiosInstance.post("/users/login", {
+              email: credentials.email,
+              password: credentials.password,
+            });
+            console.log("Response:", data);
+            const user = data.data;
+            if (user) {
+              return user;
+            } else {
+              return null;
+            }
+          }
+        } catch (error) {
+          if (error instanceof AxiosError) {
+            console.log(error.response);
+            throw new Error(error?.response?.data.message);
           }
         }
       },
@@ -51,13 +61,15 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, user }) {
+      console.log("ini user", user);
+      console.log("ini token", token);
       if (user) {
         token = { ...token, ...user };
       }
       return token;
     },
     async session({ session, token }) {
-      session.user = token;
+      session.user = token as any;
       return session;
     },
   },
