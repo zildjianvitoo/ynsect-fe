@@ -9,6 +9,7 @@ import { Toaster } from "@/components/ui/sonner";
 export const metadata: Metadata = {
   title: "Ynsect",
   description: "Ynsect, Cultivating a Sustainable Future with Maggot Farming.",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
