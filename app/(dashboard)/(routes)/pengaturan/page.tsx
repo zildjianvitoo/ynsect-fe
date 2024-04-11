@@ -32,10 +32,10 @@ export default function Pengaturan() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     values: {
-      email: "daffaalthaf25@gmail.com",
-      name: "Daffa Althaf",
-      phone: "081234567890",
-      alamat: "Jl. Apapun, Palembang, Sumatera Selatan",
+      email: data?.user.email!,
+      name: data?.user.name!,
+      phone: data?.user.phone || "",
+      alamat: data?.user.address || "",
     },
   });
 

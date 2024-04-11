@@ -1,5 +1,13 @@
 export { default } from "next-auth/middleware";
 
 export const config = {
-  matcher: ["/dashboard", "/ask-the-pro", "/waste-database"],
+  matcher: [
+    "/dashboard",
+    "/agenda",
+    "/pengaturan",
+    "/ask-the-pro",
+    "/waste-database",
+    "/forum/saved/:path",
+    "/forum/user/:path",
+  ],
 };

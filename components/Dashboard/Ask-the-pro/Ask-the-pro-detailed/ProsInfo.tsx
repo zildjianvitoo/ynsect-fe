@@ -27,10 +27,16 @@ export default function ProsInfo({ name, job, experience, image }: Props) {
       </div>
 
       <button className="flex h-14 w-72 items-center justify-center gap-4 rounded-lg bg-primary text-xl text-white">
-        Hubungi Saya
-        <span className="text-3xl">
-          <IoIosChatboxes />
-        </span>
+        <a
+          href="https://wa.me/6285176734655/?text=Halo%2C%20apa%20kamu%20bisa%20membantu%20saya%20tentang%20seputar%20Ynsect%3F
+"
+          className="flex gap-3"
+        >
+          Hubungi Saya
+          <span className="text-3xl">
+            <IoIosChatboxes />
+          </span>
+        </a>
       </button>
     </div>
   );
