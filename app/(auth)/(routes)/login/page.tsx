@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const LoginPage = () => {
   const { status } = useSession();

@@ -26,7 +26,7 @@ export async function getUserById({ userId }: { userId: string }) {
 }
 
 export async function registerUser({ name, email, password }: RegisterProps) {
-  const { data } = await axiosInstance.post("/user/register", {
+  const { data } = await axiosInstance.post("/users/register", {
     name,
     email,
     password,

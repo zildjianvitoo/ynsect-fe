@@ -67,6 +67,13 @@ export async function getAllAgendasGroupedByColumn() {
   return board;
 }
 
+export async function getAllAgendas() {
+  const { data } = await axiosInstance.get<GetAllAgendasResponse>("/agendas");
+  const agendas = data.data;
+
+  return agendas;
+}
+
 export async function createAgenda({
   title,
   deadline,

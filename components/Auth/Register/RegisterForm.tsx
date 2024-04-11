@@ -189,16 +189,6 @@ export default function RegisterForm() {
             </FormItem>
           )}
         />
-        <div className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            id="remember"
-            className="h-5 w-5 rounded-xl border-gray-300 bg-gray-100 text-green-600 focus:ring-green-500"
-          />
-          <label className="text-lg" htmlFor="remember">
-            Remember Me
-          </label>
-        </div>
         <button
           disabled={form.formState.isSubmitting}
           type="submit"

@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { toast } from "sonner";
+import { AxiosError } from "axios";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -56,12 +57,17 @@ export default function LoginForm() {
         });
         router.push("/dashboard");
         router.refresh();
+      } else {
+        toast.error("Email atau password salah", {
+          description: "Silahkan isi data dengan benar!",
+        });
       }
     } catch (error: any) {
-      console.error("Login Failed:", error);
-      toast.error("Terjadi kesalahan pada pengisian data", {
-        description: "Silahkan isi data dengan benar!",
-      });
+      if (error instanceof AxiosError) {
+        toast.error("Terjadi kesalahan pada pengisian data", {
+          description: "Silahkan isi data dengan benar!",
+        });
+      }
     }
   }
 

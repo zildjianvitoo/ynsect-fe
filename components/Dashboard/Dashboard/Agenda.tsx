@@ -1,17 +1,33 @@
 "use client";
-import React from "react";
+import { useEffect, useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
-import { DayClickEventHandler } from "react-day-picker";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { id } from "date-fns/locale";
+import Link from "next/link";
+import { Agenda as AgendaTypes } from "@/types/board";
+import { getAllAgendas } from "@/lib/network-data/agenda";
+import { toast } from "sonner";
 type Props = {};
 
 const notifiedDate = [new Date(2024, 2, 29), new Date(2024, 2, 27)];
 
 export default function Agenda({}: Props) {
-  const [pickedDate, setPickedDate] = React.useState<Date | undefined>(
-    new Date(),
-  );
+  const [pickedDate, setPickedDate] = useState<Date | undefined>(new Date());
+  const [agendas, setAgendas] = useState<any>([]);
+
+  useEffect(() => {
+    const getAgendas = async () => {
+      try {
+        const agendas = await getAllAgendas();
+        setAgendas(agendas);
+        console.log(agendas);
+      } catch (error) {
+        console.log(error);
+        toast.error("Terjadi kesalahan saat mengambil data agenda");
+      }
+    };
+    getAgendas();
+  }, []);
 
   const today = format(new Date(), "d MMMM yyyy", { locale: id });
 
@@ -35,43 +51,28 @@ export default function Agenda({}: Props) {
             <p className="text-lg  font-bold text-primary lg:text-xl">
               {today}
             </p>
-            <p className=" cursor-pointer text-lg text-primary text-slate-400">
+            <Link
+              href={"/agenda"}
+              className=" cursor-pointer text-lg text-primary text-slate-400"
+            >
               Lihat Semua
-            </p>
+            </Link>
           </div>
-          <div className="mt-6 flex flex-col rounded-md border border-[#e8e8e8] p-4">
-            <p className="text-lg  font-bold text-primary lg:text-xl">
-              Inokulasi Telur
-            </p>
-            <ul className="list-disc pl-6 pt-1 text-slate-500">
-              <li>Penempatan telur</li>
-            </ul>
-            <p className="mt-4 w-fit rounded-md bg-[#CFF6FB] px-2 py-0.5 text-[#0070AD]">
-              02/03/2024
-            </p>
-          </div>
-          <div className="mt-6 flex flex-col rounded-md border border-[#e8e8e8] p-4">
-            <p className="text-lg  font-bold text-primary lg:text-xl">
-              Pemeliharaan
-            </p>
-            <ul className="list-disc pl-6 pt-1 text-slate-500">
-              <li>Pemberian pakan harian</li>
-            </ul>
-            <p className="mt-4 w-fit rounded-md bg-[#CFF6FB] px-2 py-0.5 text-[#0070AD]">
-              02/03/2024
-            </p>
-          </div>
-          <div className="mt-6 flex flex-col rounded-md border border-[#e8e8e8] p-4">
-            <p className="text-lg  font-bold text-primary lg:text-xl">
-              Pemeliharaan
-            </p>
-            <ul className="list-disc pl-6 pt-1 text-slate-500">
-              <li>Pemberian pakan harian</li>
-            </ul>
-            <p className="mt-4 w-fit rounded-md bg-[#CFF6FB] px-2 py-0.5 text-[#0070AD]">
-              02/03/2024
-            </p>
-          </div>
+
+          {agendas.slice(0, 3).map((agenda: any) => (
+            <div
+              key={agenda.id}
+              className="mt-6 flex flex-col rounded-md border border-[#e8e8e8] p-4"
+            >
+              <p className="text-lg  font-bold text-primary lg:text-xl">
+                {agenda.title}
+              </p>
+              <p className=" pl-6 pt-1 text-slate-500">{agenda.description}</p>
+              <p className="mt-4 w-fit rounded-md bg-[#FAE5CB]  px-2 py-0.5 text-[#A53309]">
+                {format(parseISO(agenda.deadline), "dd/MM/yyyy")}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
