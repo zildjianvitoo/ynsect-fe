@@ -35,7 +35,7 @@ export default function WasteManagement({}: Props) {
       <div className="flex flex-col gap-8 md:gap-10 lg:gap-12">
         <div className="relative  overflow-hidden rounded-md ">
           <Image
-            src="/images/biobox.jpeg"
+            src="/images/Service/waste-management-1.jpeg"
             alt="Biobox"
             fill
             className="object-cover"
@@ -56,10 +56,10 @@ export default function WasteManagement({}: Props) {
         </div>
         <div className="relative  overflow-hidden rounded-md ">
           <Image
-            src="/images/biobox.jpeg"
+            src="/images/Service/waste-management-2.jpeg"
             alt="Biobox"
             fill
-            className="object-cover"
+            className="object-cover object-center"
           />
           <div className="absolute left-0 top-0 z-10 h-full w-full bg-black/75 " />
           <div className="relative z-20 flex h-full flex-col items-end justify-center gap-2  p-4   text-white md:px-0 lg:px-6 lg:py-8">
@@ -76,7 +76,7 @@ export default function WasteManagement({}: Props) {
         </div>
         <div className="relative  overflow-hidden rounded-md ">
           <Image
-            src="/images/biobox.jpeg"
+            src="/images/Service/waste-management-3.jpeg"
             alt="Biobox"
             fill
             className="object-cover"

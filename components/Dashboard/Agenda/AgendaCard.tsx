@@ -29,7 +29,6 @@ export default function AgendaCard({
           "opacity-60": isDragging,
         },
       )}
-      onClick={() => console.log("aaa")}
       {...props}
     >
       {agenda.image && (
@@ -44,7 +43,7 @@ export default function AgendaCard({
       )}
       <div>
         <h4 className="text-xl font-bold text-primary">{agenda.title}</h4>
-        <p className="text-[#777]">{agenda.description}aa</p>
+        <p className="text-[#777]">{agenda.description}</p>
       </div>
 
       <div className="flex items-center justify-between ">

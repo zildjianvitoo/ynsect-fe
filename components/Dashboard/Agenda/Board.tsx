@@ -18,7 +18,7 @@ export default function Board() {
 
   useEffect(() => {
     getBoard();
-  }, [getBoard]);
+  }, []);
 
   const handleOnDragEnd = (result: DropResult) => {
     const { destination, source, type } = result;

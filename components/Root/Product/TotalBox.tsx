@@ -3,7 +3,7 @@ import CountButton from "@/components/Button/CountButton";
 import { Button } from "@/components/ui/button";
 import { addProductToCart } from "@/lib/network-data/cart";
 import { useSession } from "next-auth/react";
-
+import { useRouter } from "next/navigation";
 import { GoPlus } from "react-icons/go";
 import { toast } from "sonner";
 
@@ -13,8 +13,13 @@ type Props = {
 
 export default function TotalBox({ productId }: Props) {
   const { data } = useSession();
+  const router = useRouter();
 
   const onAddProductToCart = async () => {
+    if (!data) {
+      router.push("/login");
+      return;
+    }
     try {
       await addProductToCart({
         userId: data!.user.id,

@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 import { CiShoppingBasket } from "react-icons/ci";
@@ -17,8 +18,13 @@ type Props = {
 
 export default function ProductCard({ product }: Props) {
   const { data } = useSession();
+  const router = useRouter();
 
   const onAddProductToCart = async () => {
+    if (!data) {
+      router.push("/login");
+      return;
+    }
     try {
       await addProductToCart({
         userId: data!.user.id,
@@ -34,12 +40,12 @@ export default function ProductCard({ product }: Props) {
   return (
     <div className="flex flex-col rounded-md border border-slate-300 bg-[#F4FFFE] px-4 py-6">
       <Link href={`/products/${product.id}`}>
-        <figure className="relative mx-auto size-40 lg:size-52 xl:size-64">
+        <figure className="relative mx-auto size-40 lg:size-52 xl:h-64 xl:w-72">
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className="object-cover "
+            className="object-contain "
           />
         </figure>
       </Link>
@@ -57,7 +63,7 @@ export default function ProductCard({ product }: Props) {
           Buy
         </Button>
         <Button
-          className="group mt-3 border border-primary bg-transparent px-3"
+          className="group mt-3 border border-primary bg-transparent px-2"
           onClick={onAddProductToCart}
         >
           <CiShoppingBasket className="size-6 text-primary group-hover:text-white" />
