@@ -1,8 +1,8 @@
 import ProsCard from "@/components/Dashboard/Ask-the-pro/ProsCard";
-import { getAllForums } from "@/lib/network-data/forum";
 
 const dummyData = [
   {
+    id: 1,
     name: "Andre Martasyah",
     job: "Founder Magalarva",
     experience: "7",
@@ -10,39 +10,44 @@ const dummyData = [
     image: "/images/pro-1.jpg",
   },
   {
-    name: "Elena Nguyen",
-    job: "Senior Software Engineer",
+    id: 2,
+    name: "Budi Hartono",
+    job: "Founder Mageasy",
     experience: "10",
     status: "Top Rated",
     image: "/images/pro-2.jpg",
   },
   {
-    name: "Ravi Patel",
-    job: "Marketing Director",
+    id: 3,
+    name: "Desi Amrina",
+    job: "Founder TernakMudah",
     experience: "8",
     status: "Top Rated",
     image: "/images/pro-3.jpg",
   },
   {
-    name: "Sophie Lewis",
-    job: "UX/UI Designer",
+    id: 4,
+    name: "Cahya Rahmi",
+    job: "Peternak Lele",
     experience: "6",
     status: "Top Rated",
-    image: "/images/pro-2.jpg",
+    image: "/images/pro-4.jpeg",
   },
   {
-    name: "Carlos Ramirez",
+    id: 5,
+    name: "Bayu Herman",
     job: "Data Scientist",
     experience: "9",
     status: "Top Rated",
-    image: "/images/pro-1.jpg",
+    image: "/images/pro-5.jpeg",
   },
   {
-    name: "Aisha Khan",
-    job: "Financial Analyst",
+    id: 6,
+    name: "Bob Sanusi",
+    job: "FC Equiment Maglarva",
     experience: "7",
     status: "Top Rated",
-    image: "/images/pro-3.jpg",
+    image: "/images/pro-6.jpeg",
   },
 ];
 
@@ -54,6 +59,7 @@ export default async function AskThePro() {
     >
       {dummyData.map((data) => (
         <ProsCard
+          id={data.id}
           key={data.name}
           name={data.name}
           job={data.job}

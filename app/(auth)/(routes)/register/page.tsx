@@ -31,8 +31,6 @@ const RegisterPage = () => {
           <div className="absolute z-20 flex w-full justify-center">
             <div className="bg-white px-2 ">Or register in with</div>
           </div>
-
-          <div className="absolute top-1/2 h-[0.5px] w-full bg-slate-500" />
         </div>
         <div className="mt-4 flex gap-4">
           <OAuthButton provider="google" icon={<FcGoogle />} text="Google" />

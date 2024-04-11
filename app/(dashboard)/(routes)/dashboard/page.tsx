@@ -2,10 +2,8 @@
 
 import Agenda from "@/components/Dashboard/Dashboard/Agenda";
 import CardStatSelection from "@/components/Dashboard/Dashboard/CardStatSelection";
-import { useSession } from "next-auth/react";
 
 import React, { useEffect } from "react";
-import { toast } from "sonner";
 
 type Props = {};
 

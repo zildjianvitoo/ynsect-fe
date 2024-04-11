@@ -1,4 +1,5 @@
 import GalleryCard from "../GalleryCard";
+import GalleryCardReverse from "../GalleryCardReverse";
 
 export default function Gallery() {
   return (
@@ -19,7 +20,7 @@ export default function Gallery() {
       </div>
 
       <div className="mt-4">
-        <GalleryCard isReverse />
+        <GalleryCardReverse />
         <div className="mt-4 flex flex-col gap-4 text-center md:text-left">
           <h2 className="text-xl/snug font-bold tracking-wide text-primary md:text-4xl/normal">
             Experience the transformative power of technology

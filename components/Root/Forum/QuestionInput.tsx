@@ -33,6 +33,9 @@ export default function QuestionInput() {
 
   async function onSubmit(values: FormFields) {
     try {
+      if (!data?.user) {
+        router.push("/login");
+      }
       if (data) {
         await postForum({
           content: values.questionValue,

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Map() {
   return (
     <section id="map" className="container mt-8 py-6">
@@ -16,8 +18,15 @@ export default function Map() {
           </div>
         </div>
       </div>
-      <div className="mt-8 h-96 w-full rounded-xl bg-green-200">
-        <div className=""></div>
+      <div className="relative mt-8 h-96 w-full overflow-hidden rounded-xl">
+        <a href="https://www.google.com/maps/place/Fasilkom+Universitas+Sriwijaya+-+Kampus+Palembang/@-2.9845264,104.7334016,17z/data=!4m6!3m5!1s0x2e3b75ed9f44e9c5:0x30db735107f3611d!8m2!3d-2.9849001!4d104.7322375!16s%2Fg%2F11b6pzmsn2?entry=ttu">
+          <Image
+            src="/images/maps.png"
+            alt="Map"
+            fill
+            className="object-cover"
+          />
+        </a>
       </div>
     </section>
   );

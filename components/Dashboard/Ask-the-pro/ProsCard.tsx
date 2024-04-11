@@ -1,7 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import { PiChats } from "react-icons/pi";
 
 type Props = {
+  id: number;
   name: string;
   job: string;
   experience: string;
@@ -10,6 +12,7 @@ type Props = {
 };
 
 export default function ProsCard({
+  id,
   name,
   job,
   experience,
@@ -33,9 +36,12 @@ export default function ProsCard({
               {experience} Tahun Pengalaman
             </div>
           </div>
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-3xl text-white">
+          <Link
+            href={`/ask-the-pro/${id}`}
+            className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-3xl text-white"
+          >
             <PiChats />
-          </div>
+          </Link>
         </div>
       </div>
     </div>

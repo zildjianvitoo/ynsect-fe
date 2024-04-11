@@ -45,8 +45,6 @@ export default function Navbar() {
     .map((word: string) => word.charAt(0).toUpperCase())
     .join("");
 
-  console.log(data?.user.image);
-
   async function handleLogout() {
     await signOut({ redirect: false, callbackUrl: "/" });
     return router.push("/");
