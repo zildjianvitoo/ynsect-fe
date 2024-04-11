@@ -14,7 +14,11 @@ import ProductCard from "../ProductCard";
 import { getAllProducts } from "@/lib/network-data/product";
 import { Product } from "@/types/product";
 
-export default function ProductListCarousel() {
+type Props = {
+  image: string;
+};
+
+export default function ProductListCarousel({ image }: Props) {
   const [productList, setProductList] = useState<Product[]>([]);
 
   useEffect(() => {

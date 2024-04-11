@@ -18,9 +18,9 @@ export default async function ProductDetail({ params }: Params) {
   if (product)
     return (
       <div className="container mt-36">
-        <Hero />
+        <Hero image={product.image} />
         <ProductFeature product={product} />
-        <ProductListCarousel />
+        <ProductListCarousel image={product.image} />
       </div>
     );
 }

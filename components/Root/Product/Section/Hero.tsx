@@ -11,7 +11,11 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 
-export default function Hero() {
+type Props = {
+  image: string;
+};
+
+export default function Hero({ image }: Props) {
   return (
     <section>
       <Carousel
@@ -30,7 +34,7 @@ export default function Hero() {
             <div className="absolute left-0 top-0 z-[1]  h-full w-full bg-black/60" />
             <figure className="relative h-80 w-full">
               <Image
-                src={"/images/larva-bsfkering.webp"}
+                src={image}
                 alt="Larva bsf"
                 fill
                 className="object-cover"
@@ -41,7 +45,7 @@ export default function Hero() {
             <div className=" absolute left-0 top-0 z-[1] h-full w-full bg-black/60" />
             <figure className="relative h-80 w-full">
               <Image
-                src={"/images/larva-bsfkering.webp"}
+                src={image}
                 alt="Larva bsf"
                 fill
                 className="object-cover"
@@ -52,7 +56,7 @@ export default function Hero() {
             <div className=" absolute left-0 top-0 z-[1] h-full w-full bg-black/60" />
             <figure className="h-80 w-full">
               <Image
-                src={"/images/larva-bsfkering.webp"}
+                src={image}
                 alt="Larva bsf"
                 fill
                 className="object-cover"

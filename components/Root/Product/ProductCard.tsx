@@ -47,7 +47,7 @@ export default function ProductCard({ product }: Props) {
         {product.name}
       </h3>
       <p className="mt-1 text-sm text-slate-500 md:text-base lg:mt-3">
-        {product.description}
+        {product.summary}
       </p>
       <div className="flex gap-2">
         <Button

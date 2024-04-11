@@ -7,6 +7,7 @@ type Props = {
 };
 
 export default function ProductFeature({ product }: Props) {
+  console.log(product.description);
   return (
     <section className="mt-9 flex flex-col gap-8 lg:flex-row">
       <div className="flex   flex-col gap-3">
@@ -25,41 +26,10 @@ export default function ProductFeature({ product }: Props) {
           <p className="text-xl text-slate-500 md:text-2xl lg:text-3xl">/kg</p>
         </div>
         <h3 className="mt-4 text-xl font-bold lg:text-2xl">Deskripsi</h3>
-        <div className="flex flex-col text-lg tracking-wide text-slate-500">
-          <p>
-            Larva BSF kering yang bervitamin dan bagus untuk kesehatan pakan:
-          </p>
-          <p>
-            1. Kualitas Unggulan: Produk larva kering yang kami jual adalah
-            pilihan premium yang terjamin kualitasnya. Kami memastikan larva
-            kami berasal dari sumber yang terpercaya dan diproses dengan standar
-            kualitas tertinggi untuk memberikan produk terbaik kepada pelanggan.
-          </p>
-          <p>
-            1. Kualitas Unggulan: Produk larva kering yang kami jual adalah
-            pilihan premium yang terjamin kualitasnya. Kami memastikan larva
-            kami berasal dari sumber yang terpercaya dan diproses dengan standar
-            kualitas tertinggi untuk memberikan produk terbaik kepada pelanggan.
-          </p>
-          <p>
-            1. Kualitas Unggulan: Produk larva kering yang kami jual adalah
-            pilihan premium yang terjamin kualitasnya. Kami memastikan larva
-            kami berasal dari sumber yang terpercaya dan diproses dengan standar
-            kualitas tertinggi untuk memberikan produk terbaik kepada pelanggan.
-          </p>
-          <p>
-            1. Kualitas Unggulan: Produk larva kering yang kami jual adalah
-            pilihan premium yang terjamin kualitasnya. Kami memastikan larva
-            kami berasal dari sumber yang terpercaya dan diproses dengan standar
-            kualitas tertinggi untuk memberikan produk terbaik kepada pelanggan.
-          </p>
-          <p>
-            1. Kualitas Unggulan: Produk larva kering yang kami jual adalah
-            pilihan premium yang terjamin kualitasnya. Kami memastikan larva
-            kami berasal dari sumber yang terpercaya dan diproses dengan standar
-            kualitas tertinggi untuk memberikan produk terbaik kepada pelanggan.
-          </p>
-        </div>
+        <div
+          className="summary flex w-full flex-col text-lg tracking-wide text-slate-500 "
+          dangerouslySetInnerHTML={{ __html: product.description }}
+        ></div>
       </div>
       <div className="flex w-full flex-grow flex-col gap-8">
         <TotalBox productId={product.id} />
