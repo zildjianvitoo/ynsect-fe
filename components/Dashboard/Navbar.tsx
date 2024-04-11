@@ -16,7 +16,7 @@ import {
 import { PiKeyboard } from "react-icons/pi";
 import { HiOutlinePresentationChartLine } from "react-icons/hi";
 import { RiQuestionnaireLine } from "react-icons/ri";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { TbLogout2 } from "react-icons/tb";
@@ -35,6 +35,17 @@ const links = [
 export default function Navbar() {
   const { data } = useSession();
   const router = useRouter();
+
+  const getName = data?.user?.name || "";
+
+  const splitUsername = getName.split(" ");
+
+  const alternativeImage = splitUsername
+    .slice(0, 2)
+    .map((word: string) => word.charAt(0).toUpperCase())
+    .join("");
+
+  console.log(data?.user.image);
 
   async function handleLogout() {
     await signOut({ redirect: false, callbackUrl: "/" });
@@ -106,7 +117,7 @@ export default function Navbar() {
           </SheetContent>
         </Sheet>
 
-        <div className="w-4/6">
+        <div className="w-4/6 lg:ml-20">
           <SearchInput />
         </div>
 
@@ -114,12 +125,18 @@ export default function Navbar() {
           <GoBell />
         </div>
         <div className="relative size-10 overflow-hidden rounded-full lg:size-14">
-          <Image
-            src="/images/user-1.jpg"
-            alt="User-1 profile picture"
-            fill
-            className="object-cover"
-          />
+          {data?.user.image ? (
+            <Image
+              src={data?.user.image}
+              alt="User-1 profile picture"
+              fill
+              className="object-cover"
+            />
+          ) : (
+            <div className="flex size-full items-center justify-center gap-1 rounded-full border-[3px] border-primary bg-secondary text-xl font-bold text-primary">
+              {alternativeImage}
+            </div>
+          )}
         </div>
       </div>
     </div>

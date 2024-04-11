@@ -1,13 +1,11 @@
 import SearchBar from "../SearchBar";
-import UserList from "../UserList";
 import ForumSection from "../ForumSection";
 
 export default function Sidebar() {
   return (
-    <aside className="flex flex-col gap-3 border-r p-3 lg:gap-6 lg:border-none lg:p-0">
+    <aside className="fixed z-30 flex -translate-y-[1px] flex-row-reverse gap-3 border-b bg-white py-1 max-lg:container lg:static lg:max-h-80 lg:flex-col lg:gap-6 lg:border-r lg:border-none lg:p-0">
       <SearchBar />
       <ForumSection />
-      <UserList />
     </aside>
   );
 }

@@ -1,7 +1,10 @@
 export interface Forum {
-  id: number;
-  question: string;
+  id?: number;
+  content: string;
   userId: number;
+  createdAt?: Date;
+  user?: { name: string };
+  token?: string;
 }
 
 export interface GetAllForumsResponse {

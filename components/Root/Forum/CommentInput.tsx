@@ -7,51 +7,44 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FaSquarePlus } from "react-icons/fa6";
-import { postForum } from "@/lib/network-data/forum";
 import { toast } from "sonner";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { postComment } from "@/lib/network-data/comment";
 
 const FormSchema = z.object({
-  questionValue: z.string().min(2, {
-    message: "Minimal 2 karakter",
-  }),
+  content: z.string(),
 });
 
 type FormFields = z.infer<typeof FormSchema>;
 
-export default function QuestionInput() {
-  const router = useRouter();
+export default function CommentInput({ forumId }: { forumId: string }) {
   const { data } = useSession();
-  const pathname = usePathname();
+  const router = useRouter();
   const form = useForm<FormFields>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      questionValue: "",
+      content: "",
     },
   });
 
   async function onSubmit(values: FormFields) {
     try {
       if (data) {
-        await postForum({
-          content: values.questionValue,
-          userId: data.user.id,
-          token: data.user.token,
+        await postComment({
+          content: values.content,
+          userId: data?.user.id,
+          forumId: Number(forumId),
+          token: data.user.token!,
         });
-        toast.success("Pertanyaan berhasil di posting!", {
-          description: "Silahkan berdiskusi dengan sopan",
-        });
-        if (pathname === "/forum") {
-          return router.refresh();
-        } else {
-          router.refresh();
-          return router.push("/forum");
-        }
       }
+      toast.success("Komentar berhasil ditambahkan!", {
+        description: "Silahkan berdiskusi dengan sopan",
+      });
+      return router.refresh();
     } catch (error) {
       console.log(error);
-      toast.error("Pertanyaan gagal terposting!", {
+      toast.error("Gagal menambahkan komentar!", {
         description: "Sepertinya terdapat kesalahan",
       });
     }
@@ -64,13 +57,13 @@ export default function QuestionInput() {
           <FaSquarePlus className="absolute left-3 text-xl text-slate-500 lg:left-5 lg:text-2xl" />
           <FormField
             control={form.control}
-            name="questionValue"
+            name="content"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
                   <Input
-                    placeholder="Ketik Pertanyaan"
-                    className="h-10 pl-10  lg:h-14 lg:w-full lg:pl-16 lg:text-xl"
+                    placeholder="Tambahkan Komentar..."
+                    className="h-10 pl-10  md:w-full lg:h-14 lg:pl-16 lg:text-xl"
                     {...field}
                   />
                 </FormControl>

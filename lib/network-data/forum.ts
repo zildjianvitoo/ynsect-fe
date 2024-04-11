@@ -1,4 +1,8 @@
-import { GetAllForumsResponse, GetForumByIdResponse } from "@/types/forum";
+import {
+  Forum,
+  GetAllForumsResponse,
+  GetForumByIdResponse,
+} from "@/types/forum";
 import { axiosInstance } from "../axiosInstance";
 
 export async function getAllForums() {
@@ -11,4 +15,20 @@ export async function getForumById({ forumId }: { forumId: string }) {
     `/forums/${forumId}`,
   );
   return { data: data.data };
+}
+
+export async function postForum({ content, userId, token }: Forum) {
+  const { data } = await axiosInstance.post(
+    "/forums",
+    {
+      content,
+      userId,
+    },
+    {
+      headers: {
+        authorization: token,
+      },
+    },
+  );
+  return { data };
 }
