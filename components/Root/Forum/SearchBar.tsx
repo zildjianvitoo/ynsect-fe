@@ -8,16 +8,19 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForumStore } from "@/store/ForumStore";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
-  searchValue: z.string().min(2, {
-    message: "Minimal 2 karakter",
-  }),
+  searchValue: z.string().optional(),
 });
 
 type FormFields = z.infer<typeof FormSchema>;
 
 export default function SearchBar() {
+  const searchParams = useSearchParams();
+
+  const router = useRouter();
+
   const { searchForum, setSearchValue } = useForumStore();
   const form = useForm<FormFields>({
     resolver: zodResolver(FormSchema),
@@ -27,7 +30,19 @@ export default function SearchBar() {
   });
 
   function onSubmit(value: FormFields) {
-    setSearchValue(value.searchValue);
+    const params = new URLSearchParams(searchParams);
+    if (!value.searchValue || value.searchValue.length === 0) {
+      params.delete("q");
+    }
+    if (value.searchValue) {
+      setSearchValue(value.searchValue);
+
+      params.set("q", value.searchValue);
+
+      const queryString = params.toString();
+      const updatedPath = queryString ? `/forum?${queryString}` : "/forum";
+      router.push(updatedPath);
+    }
   }
 
   return (

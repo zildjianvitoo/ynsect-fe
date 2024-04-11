@@ -1,11 +1,18 @@
 import Question from "@/components/Root/Forum/Section/Question";
 import Sidebar from "@/components/Root/Forum/Section/Sidebar";
 
-export default function Forum() {
+type Props = {
+  searchParams: {
+    q: string;
+  };
+};
+
+export default function Forum({ searchParams }: Props) {
+  console.log(searchParams);
   return (
     <section className="mt-[76px] flex flex-col gap-6 lg:container lg:mt-36 lg:flex-row lg:py-3">
       <Sidebar />
-      <Question />
+      <Question query={searchParams.q} />
     </section>
   );
 }

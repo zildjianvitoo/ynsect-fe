@@ -18,3 +18,10 @@ export interface GetForumByIdResponse {
   status: string;
   data: Forum;
 }
+
+export interface CeateSavedForumParams {
+  id: number;
+  userId: number;
+  forumId: number;
+  status: boolean;
+}

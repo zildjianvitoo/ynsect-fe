@@ -38,10 +38,10 @@ export default function QuestionCard({
 
           <div className="text-sm text-slate-500 lg:text-base">{createdAt}</div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ">
           <Bookmark
-            onClick={() => setIsMarked(!isMarked)}
-            className={`cursor-pointer ${isHelped ? " text-green-600" : "text-slate-500"} `}
+            onClick={() => setIsMarked((prev) => !prev)}
+            className={`cursor-pointer ${isMarked ? " text-green-600" : "text-slate-500"} `}
           />
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function QuestionCard({
 
       <div className="flex gap-4 lg:gap-8">
         <div
-          onClick={() => setIsHelped(!isHelped)}
+          onClick={() => setIsHelped((prev) => !prev)}
           className={`flex cursor-pointer items-center gap-3 ${isHelped ? "text-green-600" : "text-slate-500"} `}
         >
           <PiFlagPennant className="text-lg lg:text-2xl " />
