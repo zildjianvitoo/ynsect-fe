@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+import withPWAInit from "@ducanh2912/next-pwa";
 const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
@@ -7,7 +8,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
+        protocol: "https",
         hostname: "res.cloudinary.com",
         port: "",
         pathname: "/ddp4vz8jq/**",
@@ -16,4 +17,16 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+const withPWA = withPWAInit({
+  dest: "public",
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+  reloadOnOnline: true,
+  swcMinifiy: true,
+  disable: false,
+  workboxOptions: {
+    disableDevLogs: true,
+  },
+});
+
+export default withPWA(nextConfig);

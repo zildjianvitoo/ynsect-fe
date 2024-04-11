@@ -156,11 +156,7 @@ export default function CartProductList({}: Props) {
                       <div className="flex flex-col gap-4 md:flex-row">
                         <figure className="relative size-32">
                           {/* {Add Image} */}
-                          <Image
-                            src={"/images/logo.png"}
-                            alt={item.name}
-                            fill
-                          />
+                          <Image src={item.image} alt={item.name} fill />
                         </figure>
                         <div className="flex flex-col">
                           <h3 className=" hidden text-xl font-bold md:block lg:text-2xl">

@@ -62,7 +62,7 @@ export default function ProductFeature({ product }: Props) {
         </div>
       </div>
       <div className="flex w-full flex-grow flex-col gap-8">
-        <TotalBox />
+        <TotalBox productId={product.id} />
         <ShipmentBox />
       </div>
     </section>

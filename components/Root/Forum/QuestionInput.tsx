@@ -46,8 +46,10 @@ export default function QuestionInput() {
           description: "Silahkan berdiskusi dengan sopan",
         });
         if (pathname === "/forum") {
+          form.reset();
           return router.refresh();
         } else {
+          form.reset();
           router.refresh();
           return router.push("/forum");
         }

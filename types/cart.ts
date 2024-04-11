@@ -3,6 +3,7 @@ export interface ProductCart {
   name: string;
   price: number;
   description: string;
+  image: string;
   quantity: number;
 }
 

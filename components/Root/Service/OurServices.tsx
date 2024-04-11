@@ -46,7 +46,7 @@ export default function OurServices() {
               src="/images/waste-management.jpg"
               alt="Waste Management"
               fill
-              className="object-cover object-left-top"
+              className="object-cover object-[60%_20%]"
             />
             <div className="absolute left-0 top-0 z-10 h-full w-full bg-black/75 " />
             <div className="relative z-20 flex h-full flex-col justify-end gap-2  p-4 text-white  lg:p-6">
